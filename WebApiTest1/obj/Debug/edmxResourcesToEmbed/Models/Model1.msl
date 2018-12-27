@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ECommerceModelStoreContainer" CdmEntityContainer="ECommerceDB">
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="ECommerceModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Order">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Order_Add">
+            <ScalarProperty Name="Status" ParameterName="Status" />
+            <ScalarProperty Name="Date" ParameterName="Date" />
+            <ScalarProperty Name="CustomerId" ParameterName="CustomerId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Order_Upd">
+            <ScalarProperty Name="Status" ParameterName="Status" Version="Current" />
+            <ScalarProperty Name="Date" ParameterName="Date" Version="Current" />
+            <ScalarProperty Name="CustomerId" ParameterName="CustomerId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Order_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Order_Add" FunctionName="ECommerceModel.Store.Order_Add" />
+    <FunctionImportMapping FunctionImportName="Order_Del" FunctionName="ECommerceModel.Store.Order_Del" />
+    <FunctionImportMapping FunctionImportName="Order_Upd" FunctionName="ECommerceModel.Store.Order_Upd" />
+  </EntityContainerMapping>
+</Mapping>

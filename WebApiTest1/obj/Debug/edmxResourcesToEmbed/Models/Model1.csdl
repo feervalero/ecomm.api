@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ECommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ECommerceDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Order" EntityType="ECommerceModel.Order" />
+    <FunctionImport Name="Order_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="CustomerId" Mode="In" Type="Guid" />
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Order_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Order_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="CustomerId" Mode="In" Type="Guid" />
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+</Schema>
