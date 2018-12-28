@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApiTest1.Models
+namespace ECommerceAPI.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,25 +17,26 @@ namespace WebApiTest1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.OrderDetail = new HashSet<OrderDetail>();
             this.Inventory = new HashSet<Inventory>();
+            this.OrderDetail = new HashSet<OrderDetail>();
         }
     
         public System.Guid Id { get; set; }
+        public System.Guid PriceId { get; set; }
+        public Nullable<System.Guid> ProductFeatureId { get; set; }
+        public System.Guid ModuleId { get; set; }
         public string ModelNumber { get; set; }
         public string Variant { get; set; }
         public string Description { get; set; }
-        public System.Guid PriceId { get; set; }
+        public bool Active { get; set; }
         public byte[] RowVersion { get; set; }
-        public Nullable<System.Guid> ProductFeatureId { get; set; }
-        public System.Guid ModuleId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inventory> Inventory { get; set; }
+        public virtual Module Module { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         public virtual Price Price { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventory> Inventory { get; set; }
         public virtual ProductFeature ProductFeature { get; set; }
-        public virtual Module Module { get; set; }
     }
 }

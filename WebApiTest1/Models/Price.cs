@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApiTest1.Models
+namespace ECommerceAPI.Models
 {
     using System;
     using System.Collections.Generic;
@@ -25,6 +25,7 @@ namespace WebApiTest1.Models
         public string Discount { get; set; }
         public string Taxes { get; set; }
         public System.Guid PriceTypeId { get; set; }
+        public bool Active { get; set; }
         public byte[] RowVersion { get; set; }
     
         public virtual PriceType PriceType { get; set; }

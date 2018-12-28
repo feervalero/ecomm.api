@@ -1,0 +1,809 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ECommerceModelStoreContainer" CdmEntityContainer="ECommerceDB">
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="ECommerceModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Order">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Order_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Status" ParameterName="Status" />
+            <ScalarProperty Name="Date" ParameterName="Date" />
+            <ScalarProperty Name="CustomerId" ParameterName="CustomerId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Order_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Status" ParameterName="Status" Version="Current" />
+            <ScalarProperty Name="Date" ParameterName="Date" Version="Current" />
+            <ScalarProperty Name="CustomerId" ParameterName="CustomerId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Order_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetail">
+      <EntityTypeMapping TypeName="ECommerceModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetail">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="ShipmentStatus" ColumnName="ShipmentStatus" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="QuantityRequested" ColumnName="QuantityRequested" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.OrderDetail">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.OrderDetail_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="ShipmentStatus" ParameterName="ShipmentStatus" />
+            <ScalarProperty Name="Total" ParameterName="Total" />
+            <ScalarProperty Name="Price" ParameterName="Price" />
+            <ScalarProperty Name="QuantityRequested" ParameterName="QuantityRequested" />
+            <ScalarProperty Name="ProductId" ParameterName="ProductId" />
+            <ScalarProperty Name="OrderId" ParameterName="OrderId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.OrderDetail_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="ShipmentStatus" ParameterName="ShipmentStatus" Version="Current" />
+            <ScalarProperty Name="Total" ParameterName="Total" Version="Current" />
+            <ScalarProperty Name="Price" ParameterName="Price" Version="Current" />
+            <ScalarProperty Name="QuantityRequested" ParameterName="QuantityRequested" Version="Current" />
+            <ScalarProperty Name="ProductId" ParameterName="ProductId" Version="Current" />
+            <ScalarProperty Name="OrderId" ParameterName="OrderId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.OrderDetail_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payment">
+      <EntityTypeMapping TypeName="ECommerceModel.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Installments" ColumnName="Installments" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="PaymentIndicator" ColumnName="PaymentIndicator" />
+          <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Payment">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Payment_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Installments" ParameterName="Installments" />
+            <ScalarProperty Name="Status" ParameterName="Status" />
+            <ScalarProperty Name="Amount" ParameterName="Amount" />
+            <ScalarProperty Name="PaymentIndicator" ParameterName="PaymentIndicator" />
+            <ScalarProperty Name="PaymentMethodId" ParameterName="PaymentMethodId" />
+            <ScalarProperty Name="OrderId" ParameterName="OrderId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Payment_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Installments" ParameterName="Installments" Version="Current" />
+            <ScalarProperty Name="Status" ParameterName="Status" Version="Current" />
+            <ScalarProperty Name="Amount" ParameterName="Amount" Version="Current" />
+            <ScalarProperty Name="PaymentIndicator" ParameterName="PaymentIndicator" Version="Current" />
+            <ScalarProperty Name="PaymentMethodId" ParameterName="PaymentMethodId" Version="Current" />
+            <ScalarProperty Name="OrderId" ParameterName="OrderId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Payment_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentMethod">
+      <EntityTypeMapping TypeName="ECommerceModel.PaymentMethod">
+        <MappingFragment StoreEntitySet="PaymentMethod">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Extra" ColumnName="Extra" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.PaymentMethod">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.PaymentMethod_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Extra" ParameterName="Extra" />
+            <ScalarProperty Name="Description" ParameterName="Description" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.PaymentMethod_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Extra" ParameterName="Extra" Version="Current" />
+            <ScalarProperty Name="Description" ParameterName="Description" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Payment_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Price">
+      <EntityTypeMapping TypeName="ECommerceModel.Price">
+        <MappingFragment StoreEntitySet="Price">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="PriceTypeId" ColumnName="PriceTypeId" />
+          <ScalarProperty Name="Taxes" ColumnName="Taxes" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="MSRP" ColumnName="MSRP" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Price">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Price_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="PriceTypeId" ParameterName="PriceTypeId" />
+            <ScalarProperty Name="Taxes" ParameterName="Taxes" />
+            <ScalarProperty Name="Discount" ParameterName="Discount" />
+            <ScalarProperty Name="MSRP" ParameterName="MSRP" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Price_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="PriceTypeId" ParameterName="PriceTypeId" Version="Current" />
+            <ScalarProperty Name="Taxes" ParameterName="Taxes" Version="Current" />
+            <ScalarProperty Name="Discount" ParameterName="Discount" Version="Current" />
+            <ScalarProperty Name="MSRP" ParameterName="MSRP" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Price_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PriceType">
+      <EntityTypeMapping TypeName="ECommerceModel.PriceType">
+        <MappingFragment StoreEntitySet="PriceType">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.PriceType">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.PriceType_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Value" ParameterName="Value" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.PriceType_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Value" ParameterName="Value" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.PriceType_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="ECommerceModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="ProductFeatureId" ColumnName="ProductFeatureId" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="PriceId" ColumnName="PriceId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Variant" ColumnName="Variant" />
+          <ScalarProperty Name="ModelNumber" ColumnName="ModelNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Product">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Product_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Description" ParameterName="Description" />
+            <ScalarProperty Name="Variant" ParameterName="Variant" />
+            <ScalarProperty Name="ModelNumber" ParameterName="ModelNumber" />
+            <ScalarProperty Name="ModuleId" ParameterName="ModuleId" />
+            <ScalarProperty Name="ProductFeatureId" ParameterName="ProductFeatureId" />
+            <ScalarProperty Name="PriceId" ParameterName="PriceId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Product_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Description" ParameterName="Description" Version="Current" />
+            <ScalarProperty Name="Variant" ParameterName="Variant" Version="Current" />
+            <ScalarProperty Name="ModelNumber" ParameterName="ModelNumber" Version="Current" />
+            <ScalarProperty Name="ModuleId" ParameterName="ModuleId" Version="Current" />
+            <ScalarProperty Name="ProductFeatureId" ParameterName="ProductFeatureId" Version="Current" />
+            <ScalarProperty Name="PriceId" ParameterName="PriceId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Product_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventory">
+      <EntityTypeMapping TypeName="ECommerceModel.Inventory">
+        <MappingFragment StoreEntitySet="Inventory">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="MinimumQuantityAvailable" ColumnName="MinimumQuantityAvailable" />
+          <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
+          <ScalarProperty Name="QuantityOnReserve" ColumnName="QuantityOnReserve" />
+          <ScalarProperty Name="StatusTypeId" ColumnName="StatusTypeId" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Inventory">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Inventory_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="MinimumQuantityAvailable" ParameterName="MinimumQuantityAvailable" />
+            <ScalarProperty Name="QuantityAvailable" ParameterName="QuantityAvailable" />
+            <ScalarProperty Name="QuantityOnReserve" ParameterName="QuantityOnReserve" />
+            <ScalarProperty Name="StatusTypeId" ParameterName="StatusTypeId" />
+            <ScalarProperty Name="ProductId" ParameterName="ProductId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Inventory_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="MinimumQuantityAvailable" ParameterName="MinimumQuantityAvailable" Version="Current" />
+            <ScalarProperty Name="QuantityAvailable" ParameterName="QuantityAvailable" Version="Current" />
+            <ScalarProperty Name="QuantityOnReserve" ParameterName="QuantityOnReserve" Version="Current" />
+            <ScalarProperty Name="StatusTypeId" ParameterName="StatusTypeId" Version="Current" />
+            <ScalarProperty Name="ProductId" ParameterName="ProductId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Inventory_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusType">
+      <EntityTypeMapping TypeName="ECommerceModel.StatusType">
+        <MappingFragment StoreEntitySet="StatusType">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.StatusType">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.StatusType_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Value" ParameterName="Value" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.StatusType_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Value" ParameterName="Value" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.StatusType_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Audience">
+      <EntityTypeMapping TypeName="ECommerceModel.Audience">
+        <MappingFragment StoreEntitySet="Audience">
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="AllowedOrigin" ColumnName="AllowedOrigin" />
+          <ScalarProperty Name="RefreshTokenLifeTime" ColumnName="RefreshTokenLifeTime" />
+          <ScalarProperty Name="ApplicationType" ColumnName="ApplicationType" />
+          <ScalarProperty Name="Secret" ColumnName="Secret" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Audience">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Audience_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="AllowedOrigin" ParameterName="AllowedOrigin" />
+            <ScalarProperty Name="RefreshTokenLifeTime" ParameterName="RefreshTokenLifeTime" />
+            <ScalarProperty Name="ApplicationType" ParameterName="ApplicationType" />
+            <ScalarProperty Name="Secret" ParameterName="Secret" />
+            <ScalarProperty Name="Name" ParameterName="Name" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Audience_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="AllowedOrigin" ParameterName="AllowedOrigin" Version="Current" />
+            <ScalarProperty Name="RefreshTokenLifeTime" ParameterName="RefreshTokenLifeTime" Version="Current" />
+            <ScalarProperty Name="ApplicationType" ParameterName="ApplicationType" Version="Current" />
+            <ScalarProperty Name="Secret" ParameterName="Secret" Version="Current" />
+            <ScalarProperty Name="Name" ParameterName="Name" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Audience_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Module">
+      <EntityTypeMapping TypeName="ECommerceModel.Module">
+        <MappingFragment StoreEntitySet="Module">
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Module">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Module_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Description" ParameterName="Description" />
+            <ScalarProperty Name="Name" ParameterName="Name" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Module_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Description" ParameterName="Description" Version="Current" />
+            <ScalarProperty Name="Name" ParameterName="Name" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Module_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefreshToken">
+      <EntityTypeMapping TypeName="ECommerceModel.RefreshToken">
+        <MappingFragment StoreEntitySet="RefreshToken">
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ProtectedTicket" ColumnName="ProtectedTicket" />
+          <ScalarProperty Name="ExpiresUtc" ColumnName="ExpiresUtc" />
+          <ScalarProperty Name="IssuedUtc" ColumnName="IssuedUtc" />
+          <ScalarProperty Name="AudienceId" ColumnName="AudienceId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resource">
+      <EntityTypeMapping TypeName="ECommerceModel.Resource">
+        <MappingFragment StoreEntitySet="Resource">
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Resource">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Resource_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Description" ParameterName="Description" />
+            <ScalarProperty Name="Name" ParameterName="Name" />
+            <ScalarProperty Name="ResourceTypeId" ParameterName="ResourceTypeId" />
+            <ScalarProperty Name="ModuleId" ParameterName="ModuleId" />
+            <ScalarProperty Name="ParentId" ParameterName="ParentId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Resource_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Description" ParameterName="Description" Version="Current" />
+            <ScalarProperty Name="Name" ParameterName="Name" Version="Current" />
+            <ScalarProperty Name="ResourceTypeId" ParameterName="ResourceTypeId" Version="Current" />
+            <ScalarProperty Name="ModuleId" ParameterName="ModuleId" Version="Current" />
+            <ScalarProperty Name="ParentId" ParameterName="ParentId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Resource_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResourceType">
+      <EntityTypeMapping TypeName="ECommerceModel.ResourceType">
+        <MappingFragment StoreEntitySet="ResourceType">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.ResourceType">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.ResourceType_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Description" ParameterName="Description" />
+            <ScalarProperty Name="Name" ParameterName="Name" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.ResourceType_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Description" ParameterName="Description" Version="Current" />
+            <ScalarProperty Name="Name" ParameterName="Name" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.ResourceType_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="ECommerceModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Role">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Role_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Name" ParameterName="Name" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Role_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Name" ParameterName="Name" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Role_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleRight">
+      <EntityTypeMapping TypeName="ECommerceModel.RoleRight">
+        <MappingFragment StoreEntitySet="RoleRight">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.RoleRight">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.RoleRight_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="ResourceId" ParameterName="ResourceId" />
+            <ScalarProperty Name="RoleId" ParameterName="RoleId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.RoleRight_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="ResourceId" ParameterName="ResourceId" Version="Current" />
+            <ScalarProperty Name="RoleId" ParameterName="RoleId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.RoleRight_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="ECommerceModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.User">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.User_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Password" ParameterName="Password" />
+            <ScalarProperty Name="UserName" ParameterName="UserName" />
+            <ScalarProperty Name="UserTypeId" ParameterName="UserTypeId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.User_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Password" ParameterName="Password" Version="Current" />
+            <ScalarProperty Name="UserName" ParameterName="UserName" Version="Current" />
+            <ScalarProperty Name="UserTypeId" ParameterName="UserTypeId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.User_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserClaim">
+      <EntityTypeMapping TypeName="ECommerceModel.UserClaim">
+        <MappingFragment StoreEntitySet="UserClaim">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRole">
+      <EntityTypeMapping TypeName="ECommerceModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.UserRole">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.UserRole_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="RoleId" ParameterName="RoleId" />
+            <ScalarProperty Name="UserId" ParameterName="UserId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.UserRole_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="RoleId" ParameterName="RoleId" Version="Current" />
+            <ScalarProperty Name="UserId" ParameterName="UserId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.UserRole_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserType">
+      <EntityTypeMapping TypeName="ECommerceModel.UserType">
+        <MappingFragment StoreEntitySet="UserType">
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.UserType">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.UserType_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Name" ParameterName="Name" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.UserType_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Name" ParameterName="Name" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.UserType_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeatureType">
+      <EntityTypeMapping TypeName="ECommerceModel.FeatureType">
+        <MappingFragment StoreEntitySet="FeatureType">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.FeatureType">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.FeatureType_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Key" ParameterName="Key" />
+            <ScalarProperty Name="Value" ParameterName="Value" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.FeatureType_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Key" ParameterName="Key" Version="Current" />
+            <ScalarProperty Name="Value" ParameterName="Value" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.FeatureType_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductFeature">
+      <EntityTypeMapping TypeName="ECommerceModel.ProductFeature">
+        <MappingFragment StoreEntitySet="ProductFeature">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="FeatureTypeId" ColumnName="FeatureTypeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.ProductFeature">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.ProductFeature_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Description" ParameterName="Description" />
+            <ScalarProperty Name="Title" ParameterName="Title" />
+            <ScalarProperty Name="Reference" ParameterName="Reference" />
+            <ScalarProperty Name="FeatureTypeId" ParameterName="FeatureTypeId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.ProductFeature_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Description" ParameterName="Description" Version="Current" />
+            <ScalarProperty Name="Title" ParameterName="Title" Version="Current" />
+            <ScalarProperty Name="Reference" ParameterName="Reference" Version="Current" />
+            <ScalarProperty Name="FeatureTypeId" ParameterName="FeatureTypeId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.ProductFeature_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Promotion">
+      <EntityTypeMapping TypeName="ECommerceModel.Promotion">
+        <MappingFragment StoreEntitySet="Promotion">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+          <ScalarProperty Name="PromotionTypeId" ColumnName="PromotionTypeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Promotion">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Promotion_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Value" ParameterName="Value" />
+            <ScalarProperty Name="EndDate" ParameterName="EndDate" />
+            <ScalarProperty Name="StartDate" ParameterName="StartDate" />
+            <ScalarProperty Name="ResourceTypeId" ParameterName="ResourceTypeId" />
+            <ScalarProperty Name="PromotionTypeId" ParameterName="PromotionTypeId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Promotion_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Value" ParameterName="Value" Version="Current" />
+            <ScalarProperty Name="EndDate" ParameterName="EndDate" Version="Current" />
+            <ScalarProperty Name="StartDate" ParameterName="StartDate" Version="Current" />
+            <ScalarProperty Name="ResourceTypeId" ParameterName="ResourceTypeId" Version="Current" />
+            <ScalarProperty Name="PromotionTypeId" ParameterName="PromotionTypeId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Promotion_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PromotionType">
+      <EntityTypeMapping TypeName="ECommerceModel.PromotionType">
+        <MappingFragment StoreEntitySet="PromotionType">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.PromotionType">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.PromotionType_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Value" ParameterName="Value" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.PromotionType_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Value" ParameterName="Value" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.PromotionType_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Audience_Add" FunctionName="ECommerceModel.Store.Audience_Add" />
+    <FunctionImportMapping FunctionImportName="Audience_Del" FunctionName="ECommerceModel.Store.Audience_Del" />
+    <FunctionImportMapping FunctionImportName="Audience_Upd" FunctionName="ECommerceModel.Store.Audience_Upd" />
+    <FunctionImportMapping FunctionImportName="FeatureType_Add" FunctionName="ECommerceModel.Store.FeatureType_Add" />
+    <FunctionImportMapping FunctionImportName="FeatureType_Del" FunctionName="ECommerceModel.Store.FeatureType_Del" />
+    <FunctionImportMapping FunctionImportName="FeatureType_Upd" FunctionName="ECommerceModel.Store.FeatureType_Upd" />
+    <FunctionImportMapping FunctionImportName="Inventory_Add" FunctionName="ECommerceModel.Store.Inventory_Add" />
+    <FunctionImportMapping FunctionImportName="Inventory_Del" FunctionName="ECommerceModel.Store.Inventory_Del" />
+    <FunctionImportMapping FunctionImportName="Inventory_Upd" FunctionName="ECommerceModel.Store.Inventory_Upd" />
+    <FunctionImportMapping FunctionImportName="Module_Add" FunctionName="ECommerceModel.Store.Module_Add" />
+    <FunctionImportMapping FunctionImportName="Module_Del" FunctionName="ECommerceModel.Store.Module_Del" />
+    <FunctionImportMapping FunctionImportName="Module_Upd" FunctionName="ECommerceModel.Store.Module_Upd" />
+    <FunctionImportMapping FunctionImportName="OrderDetail_Add" FunctionName="ECommerceModel.Store.OrderDetail_Add" />
+    <FunctionImportMapping FunctionImportName="OrderDetail_Del" FunctionName="ECommerceModel.Store.OrderDetail_Del" />
+    <FunctionImportMapping FunctionImportName="OrderDetail_Upd" FunctionName="ECommerceModel.Store.OrderDetail_Upd" />
+    <FunctionImportMapping FunctionImportName="Payment_Add" FunctionName="ECommerceModel.Store.Payment_Add" />
+    <FunctionImportMapping FunctionImportName="Payment_Del" FunctionName="ECommerceModel.Store.Payment_Del" />
+    <FunctionImportMapping FunctionImportName="Payment_Upd" FunctionName="ECommerceModel.Store.Payment_Upd" />
+    <FunctionImportMapping FunctionImportName="PaymentMethod_Add" FunctionName="ECommerceModel.Store.PaymentMethod_Add" />
+    <FunctionImportMapping FunctionImportName="PaymentMethod_Del" FunctionName="ECommerceModel.Store.PaymentMethod_Del" />
+    <FunctionImportMapping FunctionImportName="PaymentMethod_Upd" FunctionName="ECommerceModel.Store.PaymentMethod_Upd" />
+    <FunctionImportMapping FunctionImportName="Price_Add" FunctionName="ECommerceModel.Store.Price_Add" />
+    <FunctionImportMapping FunctionImportName="Price_Del" FunctionName="ECommerceModel.Store.Price_Del" />
+    <FunctionImportMapping FunctionImportName="Price_Upd" FunctionName="ECommerceModel.Store.Price_Upd" />
+    <FunctionImportMapping FunctionImportName="PriceType_Add" FunctionName="ECommerceModel.Store.PriceType_Add" />
+    <FunctionImportMapping FunctionImportName="PriceType_Del" FunctionName="ECommerceModel.Store.PriceType_Del" />
+    <FunctionImportMapping FunctionImportName="PriceType_Upd" FunctionName="ECommerceModel.Store.PriceType_Upd" />
+    <FunctionImportMapping FunctionImportName="Product_Add" FunctionName="ECommerceModel.Store.Product_Add" />
+    <FunctionImportMapping FunctionImportName="Product_Del" FunctionName="ECommerceModel.Store.Product_Del" />
+    <FunctionImportMapping FunctionImportName="Product_Upd" FunctionName="ECommerceModel.Store.Product_Upd" />
+    <FunctionImportMapping FunctionImportName="ProductFeature_Add" FunctionName="ECommerceModel.Store.ProductFeature_Add" />
+    <FunctionImportMapping FunctionImportName="ProductFeature_Del" FunctionName="ECommerceModel.Store.ProductFeature_Del" />
+    <FunctionImportMapping FunctionImportName="ProductFeature_Upd" FunctionName="ECommerceModel.Store.ProductFeature_Upd" />
+    <FunctionImportMapping FunctionImportName="Promotion_Add" FunctionName="ECommerceModel.Store.Promotion_Add" />
+    <FunctionImportMapping FunctionImportName="Promotion_Del" FunctionName="ECommerceModel.Store.Promotion_Del" />
+    <FunctionImportMapping FunctionImportName="Promotion_Upd" FunctionName="ECommerceModel.Store.Promotion_Upd" />
+    <FunctionImportMapping FunctionImportName="RefreshToken_Del" FunctionName="ECommerceModel.Store.RefreshToken_Del" />
+    <FunctionImportMapping FunctionImportName="Resource_Add" FunctionName="ECommerceModel.Store.Resource_Add" />
+    <FunctionImportMapping FunctionImportName="Resource_Del" FunctionName="ECommerceModel.Store.Resource_Del" />
+    <FunctionImportMapping FunctionImportName="Resource_Upd" FunctionName="ECommerceModel.Store.Resource_Upd" />
+    <FunctionImportMapping FunctionImportName="ResourceType_Add" FunctionName="ECommerceModel.Store.ResourceType_Add" />
+    <FunctionImportMapping FunctionImportName="ResourceType_Del" FunctionName="ECommerceModel.Store.ResourceType_Del" />
+    <FunctionImportMapping FunctionImportName="ResourceType_Upd" FunctionName="ECommerceModel.Store.ResourceType_Upd" />
+    <FunctionImportMapping FunctionImportName="Role_Add" FunctionName="ECommerceModel.Store.Role_Add" />
+    <FunctionImportMapping FunctionImportName="Role_Del" FunctionName="ECommerceModel.Store.Role_Del" />
+    <FunctionImportMapping FunctionImportName="Role_Upd" FunctionName="ECommerceModel.Store.Role_Upd" />
+    <FunctionImportMapping FunctionImportName="RoleRight_Add" FunctionName="ECommerceModel.Store.RoleRight_Add" />
+    <FunctionImportMapping FunctionImportName="RoleRight_Del" FunctionName="ECommerceModel.Store.RoleRight_Del" />
+    <FunctionImportMapping FunctionImportName="RoleRight_Upd" FunctionName="ECommerceModel.Store.RoleRight_Upd" />
+    <FunctionImportMapping FunctionImportName="StatusType_Add" FunctionName="ECommerceModel.Store.StatusType_Add" />
+    <FunctionImportMapping FunctionImportName="StatusType_Del" FunctionName="ECommerceModel.Store.StatusType_Del" />
+    <FunctionImportMapping FunctionImportName="StatusType_Upd" FunctionName="ECommerceModel.Store.StatusType_Upd" />
+    <FunctionImportMapping FunctionImportName="User_Add" FunctionName="ECommerceModel.Store.User_Add" />
+    <FunctionImportMapping FunctionImportName="User_Del" FunctionName="ECommerceModel.Store.User_Del" />
+    <FunctionImportMapping FunctionImportName="User_Upd" FunctionName="ECommerceModel.Store.User_Upd" />
+    <FunctionImportMapping FunctionImportName="UserClaim_Del" FunctionName="ECommerceModel.Store.UserClaim_Del" />
+    <FunctionImportMapping FunctionImportName="UserRole_Add" FunctionName="ECommerceModel.Store.UserRole_Add" />
+    <FunctionImportMapping FunctionImportName="UserRole_Del" FunctionName="ECommerceModel.Store.UserRole_Del" />
+    <FunctionImportMapping FunctionImportName="UserRole_Upd" FunctionName="ECommerceModel.Store.UserRole_Upd" />
+    <FunctionImportMapping FunctionImportName="UserType_Add" FunctionName="ECommerceModel.Store.UserType_Add" />
+    <FunctionImportMapping FunctionImportName="UserType_Del" FunctionName="ECommerceModel.Store.UserType_Del" />
+    <FunctionImportMapping FunctionImportName="UserType_Upd" FunctionName="ECommerceModel.Store.UserType_Upd" />
+    <FunctionImportMapping FunctionImportName="PromotionType_Add" FunctionName="ECommerceModel.Store.PromotionType_Add" />
+    <FunctionImportMapping FunctionImportName="PromotionType_Del" FunctionName="ECommerceModel.Store.PromotionType_Del" />
+    <FunctionImportMapping FunctionImportName="PromotionType_Upd" FunctionName="ECommerceModel.Store.PromotionType_Upd" />
+  </EntityContainerMapping>
+</Mapping>

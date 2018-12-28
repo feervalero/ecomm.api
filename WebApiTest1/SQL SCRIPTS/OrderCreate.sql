@@ -1,5 +1,5 @@
-
 /*Orders*/
+
 USE [ECommerce]
 
 IF EXISTS(select * from sys.tables where name = 'Inventory') DROP TABLE [Inventory];
@@ -123,6 +123,7 @@ CREATE TABLE [dbo].[ResourceType] (
     [Id]          UNIQUEIDENTIFIER CONSTRAINT [DF_ResourceType_Id] DEFAULT (newsequentialid()) ROWGUIDCOL NOT NULL,
     [Name]        VARCHAR (100)    NOT NULL,
     [Description] VARCHAR (250)    NOT NULL,
+    [Active]          BIT              CONSTRAINT [DF_ResourceType_Active] DEFAULT ((1)) NOT NULL,
     [RowVersion]  ROWVERSION       NOT NULL,
     CONSTRAINT [PK_ResourceType] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
@@ -151,6 +152,7 @@ CREATE TABLE [dbo].[RoleRight] (
     [Id]         UNIQUEIDENTIFIER CONSTRAINT [DF_RoleRight_Id] DEFAULT (newsequentialid()) ROWGUIDCOL NOT NULL,
     [RoleId]     UNIQUEIDENTIFIER NOT NULL,
     [ResourceId] UNIQUEIDENTIFIER NOT NULL,
+    [Active]     BIT              CONSTRAINT [DF_RoleRight_Active] DEFAULT ((1)) NOT NULL,
     [RowVersion] ROWVERSION       NOT NULL,
     CONSTRAINT [PK_RoleRight] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_RoleRight_Resource] FOREIGN KEY ([ResourceId]) REFERENCES [dbo].[Resource] ([Id]),
@@ -163,6 +165,7 @@ CREATE TABLE [dbo].[UserClaim] (
     [UserId]     UNIQUEIDENTIFIER NOT NULL,
     [Type]       VARCHAR (MAX)    NOT NULL,
     [Value]      VARCHAR (MAX)    NOT NULL,
+    [Active]     BIT              CONSTRAINT [DF_UserClaim_Active] DEFAULT ((1)) NOT NULL,
     [RowVersion] ROWVERSION       NOT NULL,
     CONSTRAINT [PK_UserClaim] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_UserClaim_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
@@ -173,6 +176,7 @@ CREATE TABLE [dbo].[UserRole] (
     [Id]         UNIQUEIDENTIFIER CONSTRAINT [DF_UserRole_Id] DEFAULT (newsequentialid()) ROWGUIDCOL NOT NULL,
     [UserId]     UNIQUEIDENTIFIER NOT NULL,
     [RoleId]     UNIQUEIDENTIFIER NOT NULL,
+    [Active]     BIT              CONSTRAINT [DF_UserRole_Active] DEFAULT ((1)) NOT NULL,
     [RowVersion] ROWVERSION       NOT NULL,
     CONSTRAINT [PK_UserRole] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_UserRole_Role] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[Role] ([Id]),
@@ -186,6 +190,7 @@ GO
 CREATE TABLE [dbo].[PromotionType](
 	[Id] [UNIQUEIDENTIFIER] NOT NULL ROWGUIDCOL CONSTRAINT [DF_PromotionType]  DEFAULT (newsequentialid()),
 	[Value] [VARCHAR](255) NOT NULL,
+	[Active][BIT] CONSTRAINT [DF_PromotionType_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_PromotionType] PRIMARY KEY CLUSTERED 
 	(
@@ -205,6 +210,7 @@ CREATE TABLE [dbo].[Promotion](
 	[StartDate] [DATETIME] NOT NULL,
 	[EndDate] [DATETIME] NOT NULL,
 	[Value] [VARCHAR] (255) NOT NULL,
+	[Active][BIT] CONSTRAINT [DF_Promotion_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_Promotion] PRIMARY KEY CLUSTERED 
 	(
@@ -221,6 +227,7 @@ CREATE TABLE [dbo].[Order](
 	[CustomerId] [UNIQUEIDENTIFIER] NOT NULL,
 	[Date] [DATETIME] NOT NULL,
 	[Status] [VARCHAR](50) NOT NULL,
+	[Active] [BIT] CONSTRAINT [DF_Order_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED 
 	(
@@ -234,6 +241,7 @@ GO
 CREATE TABLE [dbo].[PriceType](
 	[Id] [UNIQUEIDENTIFIER] NOT NULL ROWGUIDCOL CONSTRAINT [DF_PriceType]  DEFAULT (newsequentialid()),
 	[Value] [VARCHAR](255) NOT NULL,
+	[Active] [BIT] CONSTRAINT [DF_PriceType_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_PriceType] PRIMARY KEY CLUSTERED 
 	(
@@ -249,6 +257,7 @@ CREATE TABLE [dbo].[Price](
 	[Discount] [varchar](255) NULL,
 	[Taxes] [varchar](255) NULL,
 	[PriceTypeId] [UNIQUEIDENTIFIER] NOT NULL,
+	[Active] [BIT] CONSTRAINT [DF_Price_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_Price] PRIMARY KEY CLUSTERED 
 	(
@@ -261,6 +270,7 @@ CREATE TABLE [dbo].[FeatureType](
 	[Id] [UNIQUEIDENTIFIER] NOT NULL ROWGUIDCOL CONSTRAINT [DF_FeatureType]  DEFAULT (newsequentialid()),
 	[Value] [VARCHAR](255) NOT NULL,
 	[Key] [VARCHAR](255) NOT NULL,
+	[Active] [BIT] CONSTRAINT [DF_FeatureType_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_FeatureType] PRIMARY KEY CLUSTERED 
 	(
@@ -275,6 +285,7 @@ CREATE TABLE [dbo].[ProductFeature](
 	[Reference] [VARCHAR](255) NOT NULL,
 	[Title] [VARCHAR](255) NOT NULL,
 	[Description] [VARCHAR](255) NOT NULL,
+	[Active] [BIT] CONSTRAINT [DF_ProductFeature_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [ProductPK_Feature] PRIMARY KEY CLUSTERED 
 	(
@@ -292,6 +303,7 @@ CREATE TABLE [dbo].[Product](
 	[ModelNumber] [VARCHAR](20) NOT NULL,
  	[Variant] [VARCHAR](100) NOT NULL,
  	[Description] [varchar](255) NOT NULL,
+ 	[Active] [BIT] CONSTRAINT [DF_Product_Active] DEFAULT ((1)) NOT NULL,
  	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED 
 	(
@@ -312,6 +324,7 @@ CREATE TABLE [dbo].[OrderDetail](
 	[Price] [VARCHAR](20) NOT NULL,
 	[Total] [VARCHAR](20) NOT NULL,
 	[ShipmentStatus] [VARCHAR](20) NOT NULL,
+	[Active] [BIT] CONSTRAINT [DF_OrderDetail_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_OrderDetail] PRIMARY KEY CLUSTERED 
 	(
@@ -330,6 +343,7 @@ CREATE TABLE [dbo].[PaymentMethod](
 	[Id] [UNIQUEIDENTIFIER] NOT NULL ROWGUIDCOL CONSTRAINT [DF_PaymentMethod]  DEFAULT (newsequentialid()),
 	[Description] [VARCHAR](100) NOT NULL,
 	[Extra] [VARCHAR](100) NOT NULL,
+	[Active] [BIT] CONSTRAINT [DF_PaymentMethod_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_PaymentMethod] PRIMARY KEY CLUSTERED 
 	(
@@ -347,6 +361,7 @@ CREATE TABLE [dbo].[Payment](
 	[Amount]	[VARCHAR](255) NOT NULL,
 	[Status]	[VARCHAR](255) NOT NULL,
 	[Installments]	[VARCHAR](255) NOT NULL,
+	[Active] [BIT] CONSTRAINT [DF_Payment_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_Payment] PRIMARY KEY CLUSTERED 
 	(
@@ -360,6 +375,7 @@ GO
 CREATE TABLE [dbo].[StatusType](
 	[Id] [UNIQUEIDENTIFIER] NOT NULL ROWGUIDCOL CONSTRAINT [DF_StatusType]  DEFAULT (newsequentialid()),
 	[Value] [VARCHAR](255) NOT NULL,
+	[Active] [BIT] CONSTRAINT [DF_StatusType_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_StatusType] PRIMARY KEY CLUSTERED 
 	(
@@ -376,6 +392,7 @@ CREATE TABLE [dbo].[Inventory](
 	[QuantityOnReserve] [INT] NULL,
 	[QuantityAvailable] [INT] NULL,
 	[MinimumQuantityAvailable] [INT] NULL,
+	[Active] [BIT] CONSTRAINT [DF_Inventory_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_Inventory] PRIMARY KEY CLUSTERED 
 	(
@@ -384,3 +401,5 @@ CREATE TABLE [dbo].[Inventory](
 	,CONSTRAINT [FK_Inventory_StatusType] FOREIGN KEY ([StatusTypeId]) REFERENCES [dbo].[StatusType] ([Id])
 )
 GO
+
+

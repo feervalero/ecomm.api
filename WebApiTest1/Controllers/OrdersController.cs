@@ -11,9 +11,9 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
-using WebApiTest1.Models;
+using ECommerceAPI.Models;
 
-namespace WebApiTest1.Controllers
+namespace ECommerceAPI.Controllers
 {
     /*
     The WebApiConfig class may require additional changes to add a route for this controller. Merge these statements into the Register method of the WebApiConfig class as applicable. Note that OData URLs are case sensitive.
@@ -23,11 +23,13 @@ namespace WebApiTest1.Controllers
     using WebApiTest1.Models;
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
     builder.EntitySet<Order>("Orders");
+    builder.EntitySet<OrderDetail>("OrderDetail"); 
+    builder.EntitySet<Payment>("Payment"); 
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
     public class OrdersController : ODataController
     {
-        private ECommerceDB db = new ECommerceDB();
+        private ECommerceEntities db = new ECommerceEntities();
 
         // GET: odata/Orders
         [EnableQuery]
@@ -160,6 +162,20 @@ namespace WebApiTest1.Controllers
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // GET: odata/Orders(5)/OrderDetail
+        [EnableQuery]
+        public IQueryable<OrderDetail> GetOrderDetail([FromODataUri] Guid key)
+        {
+            return db.Order.Where(m => m.Id == key).SelectMany(m => m.OrderDetail);
+        }
+
+        // GET: odata/Orders(5)/Payment
+        [EnableQuery]
+        public IQueryable<Payment> GetPayment([FromODataUri] Guid key)
+        {
+            return db.Order.Where(m => m.Id == key).SelectMany(m => m.Payment);
         }
 
         protected override void Dispose(bool disposing)

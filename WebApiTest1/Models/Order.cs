@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApiTest1.Models
+namespace ECommerceAPI.Models
 {
     using System;
     using System.Collections.Generic;
@@ -25,6 +25,7 @@ namespace WebApiTest1.Models
         public System.Guid CustomerId { get; set; }
         public System.DateTime Date { get; set; }
         public string Status { get; set; }
+        public bool Active { get; set; }
         public byte[] RowVersion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

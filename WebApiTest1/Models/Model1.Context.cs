@@ -7,18 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApiTest1.Models
+namespace ECommerceAPI.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
-    public partial class ECommerceDB : DbContext
+    public partial class ECommerceEntities : DbContext
     {
-        public ECommerceDB()
-            : base("name=ECommerceDB")
+        public ECommerceEntities()
+            : base("name=ECommerceEntities")
         {
         }
     
@@ -27,6 +25,10 @@ namespace WebApiTest1.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Audience> Audience { get; set; }
+        public virtual DbSet<FeatureType> FeatureType { get; set; }
+        public virtual DbSet<Inventory> Inventory { get; set; }
+        public virtual DbSet<Module> Module { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrderDetail> OrderDetail { get; set; }
         public virtual DbSet<Payment> Payment { get; set; }
@@ -34,69 +36,18 @@ namespace WebApiTest1.Models
         public virtual DbSet<Price> Price { get; set; }
         public virtual DbSet<PriceType> PriceType { get; set; }
         public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<Inventory> Inventory { get; set; }
-        public virtual DbSet<StatusType> StatusType { get; set; }
-        public virtual DbSet<Audience> Audience { get; set; }
-        public virtual DbSet<Module> Module { get; set; }
+        public virtual DbSet<ProductFeature> ProductFeature { get; set; }
+        public virtual DbSet<Promotion> Promotion { get; set; }
+        public virtual DbSet<PromotionType> PromotionType { get; set; }
         public virtual DbSet<RefreshToken> RefreshToken { get; set; }
         public virtual DbSet<Resource> Resource { get; set; }
         public virtual DbSet<ResourceType> ResourceType { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<RoleRight> RoleRight { get; set; }
+        public virtual DbSet<StatusType> StatusType { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserClaim> UserClaim { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<UserType> UserType { get; set; }
-        public virtual DbSet<FeatureType> FeatureType { get; set; }
-        public virtual DbSet<ProductFeature> ProductFeature { get; set; }
-        public virtual DbSet<Promotion> Promotion { get; set; }
-        public virtual DbSet<PromotionType> PromotionType { get; set; }
-    
-        public virtual ObjectResult<Nullable<System.Guid>> Order_Add(Nullable<System.Guid> customerId, Nullable<System.DateTime> date, string status)
-        {
-            var customerIdParameter = customerId.HasValue ?
-                new ObjectParameter("CustomerId", customerId) :
-                new ObjectParameter("CustomerId", typeof(System.Guid));
-    
-            var dateParameter = date.HasValue ?
-                new ObjectParameter("Date", date) :
-                new ObjectParameter("Date", typeof(System.DateTime));
-    
-            var statusParameter = status != null ?
-                new ObjectParameter("Status", status) :
-                new ObjectParameter("Status", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("Order_Add", customerIdParameter, dateParameter, statusParameter);
-        }
-    
-        public virtual int Order_Del(Nullable<System.Guid> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Order_Del", idParameter);
-        }
-    
-        public virtual int Order_Upd(Nullable<System.Guid> id, Nullable<System.Guid> customerId, Nullable<System.DateTime> date, string status)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(System.Guid));
-    
-            var customerIdParameter = customerId.HasValue ?
-                new ObjectParameter("CustomerId", customerId) :
-                new ObjectParameter("CustomerId", typeof(System.Guid));
-    
-            var dateParameter = date.HasValue ?
-                new ObjectParameter("Date", date) :
-                new ObjectParameter("Date", typeof(System.DateTime));
-    
-            var statusParameter = status != null ?
-                new ObjectParameter("Status", status) :
-                new ObjectParameter("Status", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Order_Upd", idParameter, customerIdParameter, dateParameter, statusParameter);
-        }
     }
 }

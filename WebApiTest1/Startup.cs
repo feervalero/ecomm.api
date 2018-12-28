@@ -1,6 +1,6 @@
 ﻿using Microsoft.Owin;
 using System.Web.Http;
-using WebApiTest1;
+using ECommerceAPI;
 using System;
 using Owin;
 using Microsoft.Owin.Cors;
@@ -8,7 +8,7 @@ using Newtonsoft.Json.Serialization;
 
 
 [assembly: OwinStartup(typeof(Startup))]
-namespace WebApiTest1
+namespace ECommerceAPI
 {
     public partial class Startup
     {

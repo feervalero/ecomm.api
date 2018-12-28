@@ -1,0 +1,1078 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ECommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ECommerceDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Order" EntityType="ECommerceModel.Order" />
+    <EntitySet Name="OrderDetail" EntityType="ECommerceModel.OrderDetail" />
+    <EntitySet Name="Payment" EntityType="ECommerceModel.Payment" />
+    <EntitySet Name="PaymentMethod" EntityType="ECommerceModel.PaymentMethod" />
+    <EntitySet Name="Price" EntityType="ECommerceModel.Price" />
+    <EntitySet Name="PriceType" EntityType="ECommerceModel.PriceType" />
+    <EntitySet Name="Product" EntityType="ECommerceModel.Product" />
+    <AssociationSet Name="FK_OrderDetail_Order" Association="ECommerceModel.FK_OrderDetail_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Order" Association="ECommerceModel.FK_Payment_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Product" Association="ECommerceModel.FK_OrderDetail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentMethod" Association="ECommerceModel.FK_Payment_PaymentMethod">
+      <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Price_PriceType" Association="ECommerceModel.FK_Price_PriceType">
+      <End Role="PriceType" EntitySet="PriceType" />
+      <End Role="Price" EntitySet="Price" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Price" Association="ECommerceModel.FK_Product_Price">
+      <End Role="Price" EntitySet="Price" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <EntitySet Name="Inventory" EntityType="ECommerceModel.Inventory" />
+    <AssociationSet Name="FK_Inventory_Product" Association="ECommerceModel.FK_Inventory_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <EntitySet Name="StatusType" EntityType="ECommerceModel.StatusType" />
+    <AssociationSet Name="FK_Inventory_StatusType" Association="ECommerceModel.FK_Inventory_StatusType">
+      <End Role="StatusType" EntitySet="StatusType" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <EntitySet Name="Audience" EntityType="ECommerceModel.Audience" />
+    <EntitySet Name="Module" EntityType="ECommerceModel.Module" />
+    <EntitySet Name="RefreshToken" EntityType="ECommerceModel.RefreshToken" />
+    <EntitySet Name="Resource" EntityType="ECommerceModel.Resource" />
+    <EntitySet Name="ResourceType" EntityType="ECommerceModel.ResourceType" />
+    <EntitySet Name="Role" EntityType="ECommerceModel.Role" />
+    <EntitySet Name="RoleRight" EntityType="ECommerceModel.RoleRight" />
+    <EntitySet Name="User" EntityType="ECommerceModel.User" />
+    <EntitySet Name="UserClaim" EntityType="ECommerceModel.UserClaim" />
+    <EntitySet Name="UserRole" EntityType="ECommerceModel.UserRole" />
+    <EntitySet Name="UserType" EntityType="ECommerceModel.UserType" />
+    <AssociationSet Name="FK_RefreshToken_Audience" Association="ECommerceModel.FK_RefreshToken_Audience">
+      <End Role="Audience" EntitySet="Audience" />
+      <End Role="RefreshToken" EntitySet="RefreshToken" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_Module" Association="ECommerceModel.FK_Resource_Module">
+      <End Role="Module" EntitySet="Module" />
+      <End Role="Resource" EntitySet="Resource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefreshToken_User" Association="ECommerceModel.FK_RefreshToken_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="RefreshToken" EntitySet="RefreshToken" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_Resource" Association="ECommerceModel.FK_Resource_Resource">
+      <End Role="Resource" EntitySet="Resource" />
+      <End Role="Resource1" EntitySet="Resource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_ResourceType" Association="ECommerceModel.FK_Resource_ResourceType">
+      <End Role="ResourceType" EntitySet="ResourceType" />
+      <End Role="Resource" EntitySet="Resource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleRight_Resource" Association="ECommerceModel.FK_RoleRight_Resource">
+      <End Role="Resource" EntitySet="Resource" />
+      <End Role="RoleRight" EntitySet="RoleRight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleRight_Role" Association="ECommerceModel.FK_RoleRight_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleRight" EntitySet="RoleRight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="ECommerceModel.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserType" Association="ECommerceModel.FK_User_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserClaim_User" Association="ECommerceModel.FK_UserClaim_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserClaim" EntitySet="UserClaim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="ECommerceModel.FK_UserRole_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <EntitySet Name="FeatureType" EntityType="ECommerceModel.FeatureType" />
+    <EntitySet Name="ProductFeature" EntityType="ECommerceModel.ProductFeature" />
+    <AssociationSet Name="FK_ProductFeature_FeatureType" Association="ECommerceModel.FK_ProductFeature_FeatureType">
+      <End Role="FeatureType" EntitySet="FeatureType" />
+      <End Role="ProductFeature" EntitySet="ProductFeature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductFeatureId" Association="ECommerceModel.FK_Product_ProductFeatureId">
+      <End Role="ProductFeature" EntitySet="ProductFeature" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <EntitySet Name="Promotion" EntityType="ECommerceModel.Promotion" />
+    <EntitySet Name="PromotionType" EntityType="ECommerceModel.PromotionType" />
+    <AssociationSet Name="FK_Promotion_PromotionType" Association="ECommerceModel.FK_Promotion_PromotionType">
+      <End Role="PromotionType" EntitySet="PromotionType" />
+      <End Role="Promotion" EntitySet="Promotion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Promotion_ResourceType" Association="ECommerceModel.FK_Promotion_ResourceType">
+      <End Role="ResourceType" EntitySet="ResourceType" />
+      <End Role="Promotion" EntitySet="Promotion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Module" Association="ECommerceModel.FK_Product_Module">
+      <End Role="Module" EntitySet="Module" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <FunctionImport Name="Audience_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Secret" Mode="In" Type="String" />
+      <Parameter Name="ApplicationType" Mode="In" Type="String" />
+      <Parameter Name="RefreshTokenLifeTime" Mode="In" Type="Int32" />
+      <Parameter Name="AllowedOrigin" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Audience_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Audience_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Secret" Mode="In" Type="String" />
+      <Parameter Name="ApplicationType" Mode="In" Type="String" />
+      <Parameter Name="RefreshTokenLifeTime" Mode="In" Type="Int32" />
+      <Parameter Name="AllowedOrigin" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="FeatureType_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Key" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="FeatureType_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="FeatureType_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Key" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Inventory_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="ProductId" Mode="In" Type="Guid" />
+      <Parameter Name="StatusTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="QuantityOnReserve" Mode="In" Type="Int32" />
+      <Parameter Name="QuantityAvailable" Mode="In" Type="Int32" />
+      <Parameter Name="MinimumQuantityAvailable" Mode="In" Type="Int32" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Inventory_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Inventory_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="ProductId" Mode="In" Type="Guid" />
+      <Parameter Name="StatusTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="QuantityOnReserve" Mode="In" Type="Int32" />
+      <Parameter Name="QuantityAvailable" Mode="In" Type="Int32" />
+      <Parameter Name="MinimumQuantityAvailable" Mode="In" Type="Int32" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Module_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Module_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Module_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="OrderDetail_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="OrderId" Mode="In" Type="Guid" />
+      <Parameter Name="ProductId" Mode="In" Type="Guid" />
+      <Parameter Name="QuantityRequested" Mode="In" Type="Int32" />
+      <Parameter Name="Price" Mode="In" Type="String" />
+      <Parameter Name="Total" Mode="In" Type="String" />
+      <Parameter Name="ShipmentStatus" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="OrderDetail_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="OrderDetail_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="OrderId" Mode="In" Type="Guid" />
+      <Parameter Name="ProductId" Mode="In" Type="Guid" />
+      <Parameter Name="QuantityRequested" Mode="In" Type="Int32" />
+      <Parameter Name="Price" Mode="In" Type="String" />
+      <Parameter Name="Total" Mode="In" Type="String" />
+      <Parameter Name="ShipmentStatus" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Payment_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="OrderId" Mode="In" Type="Guid" />
+      <Parameter Name="PaymentMethodId" Mode="In" Type="Guid" />
+      <Parameter Name="PaymentIndicator" Mode="In" Type="String" />
+      <Parameter Name="Amount" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="Installments" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Payment_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Payment_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="OrderId" Mode="In" Type="Guid" />
+      <Parameter Name="PaymentMethodId" Mode="In" Type="Guid" />
+      <Parameter Name="PaymentIndicator" Mode="In" Type="String" />
+      <Parameter Name="Amount" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="Installments" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PaymentMethod_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Extra" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PaymentMethod_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="PaymentMethod_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Extra" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Price_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="MSRP" Mode="In" Type="String" />
+      <Parameter Name="Discount" Mode="In" Type="String" />
+      <Parameter Name="Taxes" Mode="In" Type="String" />
+      <Parameter Name="PriceTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Price_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Price_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="MSRP" Mode="In" Type="String" />
+      <Parameter Name="Discount" Mode="In" Type="String" />
+      <Parameter Name="Taxes" Mode="In" Type="String" />
+      <Parameter Name="PriceTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PriceType_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PriceType_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="PriceType_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Product_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="PriceId" Mode="In" Type="Guid" />
+      <Parameter Name="ProductFeatureId" Mode="In" Type="Guid" />
+      <Parameter Name="ModuleId" Mode="In" Type="Guid" />
+      <Parameter Name="ModelNumber" Mode="In" Type="String" />
+      <Parameter Name="Variant" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Product_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Product_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="PriceId" Mode="In" Type="Guid" />
+      <Parameter Name="ProductFeatureId" Mode="In" Type="Guid" />
+      <Parameter Name="ModuleId" Mode="In" Type="Guid" />
+      <Parameter Name="ModelNumber" Mode="In" Type="String" />
+      <Parameter Name="Variant" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ProductFeature_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="FeatureTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="Reference" Mode="In" Type="String" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ProductFeature_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="ProductFeature_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="FeatureTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="Reference" Mode="In" Type="String" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Promotion_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="PromotionTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="ResourceTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Promotion_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Promotion_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="PromotionTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="ResourceTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="RefreshToken_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Resource_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="ParentId" Mode="In" Type="Guid" />
+      <Parameter Name="ModuleId" Mode="In" Type="Guid" />
+      <Parameter Name="ResourceTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Resource_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Resource_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="ParentId" Mode="In" Type="Guid" />
+      <Parameter Name="ModuleId" Mode="In" Type="Guid" />
+      <Parameter Name="ResourceTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ResourceType_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ResourceType_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="ResourceType_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Role_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Role_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Role_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="RoleRight_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="RoleId" Mode="In" Type="Guid" />
+      <Parameter Name="ResourceId" Mode="In" Type="Guid" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="RoleRight_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="RoleRight_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="RoleId" Mode="In" Type="Guid" />
+      <Parameter Name="ResourceId" Mode="In" Type="Guid" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="StatusType_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="StatusType_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="StatusType_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="User_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="UserTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="User_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="User_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="UserTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UserClaim_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="UserRole_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="UserId" Mode="In" Type="Guid" />
+      <Parameter Name="RoleId" Mode="In" Type="Guid" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UserRole_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="UserRole_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="UserId" Mode="In" Type="Guid" />
+      <Parameter Name="RoleId" Mode="In" Type="Guid" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UserType_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UserType_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="UserType_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PromotionType_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PromotionType_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="PromotionType_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="OrderDetail" Relationship="ECommerceModel.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+    <NavigationProperty Name="Payment" Relationship="ECommerceModel.FK_Payment_Order" FromRole="Order" ToRole="Payment" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="OrderId" Type="Guid" Nullable="false" />
+    <Property Name="ProductId" Type="Guid" Nullable="false" />
+    <Property Name="QuantityRequested" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Total" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ShipmentStatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Order" Relationship="ECommerceModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="ECommerceModel.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="OrderId" Type="Guid" Nullable="false" />
+    <Property Name="PaymentMethodId" Type="Guid" Nullable="false" />
+    <Property Name="PaymentIndicator" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Installments" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Order" Relationship="ECommerceModel.FK_Payment_Order" FromRole="Payment" ToRole="Order" />
+    <NavigationProperty Name="PaymentMethod" Relationship="ECommerceModel.FK_Payment_PaymentMethod" FromRole="Payment" ToRole="PaymentMethod" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentMethod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Extra" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Payment" Relationship="ECommerceModel.FK_Payment_PaymentMethod" FromRole="PaymentMethod" ToRole="Payment" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Price">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="MSRP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Discount" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Taxes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PriceTypeId" Type="Guid" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="PriceType" Relationship="ECommerceModel.FK_Price_PriceType" FromRole="Price" ToRole="PriceType" />
+    <NavigationProperty Name="Product" Relationship="ECommerceModel.FK_Product_Price" FromRole="Price" ToRole="Product" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PriceType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Price" Relationship="ECommerceModel.FK_Price_PriceType" FromRole="PriceType" ToRole="Price" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ModelNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Variant" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PriceId" Type="Guid" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="OrderDetail" Relationship="ECommerceModel.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
+    <NavigationProperty Name="Price" Relationship="ECommerceModel.FK_Product_Price" FromRole="Product" ToRole="Price" />
+    <NavigationProperty Name="Inventory" Relationship="ECommerceModel.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
+    <Property Name="ProductFeatureId" Type="Guid" />
+    <NavigationProperty Name="ProductFeature" Relationship="ECommerceModel.FK_Product_ProductFeatureId" FromRole="Product" ToRole="ProductFeature" />
+    <Property Name="ModuleId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Module" Relationship="ECommerceModel.FK_Product_Module" FromRole="Product" ToRole="Module" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_OrderDetail_Order">
+    <End Type="ECommerceModel.Order" Role="Order" Multiplicity="1" />
+    <End Type="ECommerceModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Order">
+    <End Type="ECommerceModel.Order" Role="Order" Multiplicity="1" />
+    <End Type="ECommerceModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Product">
+    <End Type="ECommerceModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="ECommerceModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentMethod">
+    <End Type="ECommerceModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
+    <End Type="ECommerceModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="PaymentMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Price_PriceType">
+    <End Type="ECommerceModel.PriceType" Role="PriceType" Multiplicity="1" />
+    <End Type="ECommerceModel.Price" Role="Price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PriceType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Price">
+        <PropertyRef Name="PriceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Price">
+    <End Type="ECommerceModel.Price" Role="Price" Multiplicity="1" />
+    <End Type="ECommerceModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Price">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="PriceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ProductId" Type="Guid" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Product" Relationship="ECommerceModel.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
+    <Property Name="StatusTypeId" Type="Guid" Nullable="false" />
+    <Property Name="QuantityOnReserve" Type="Int32" />
+    <Property Name="QuantityAvailable" Type="Int32" />
+    <Property Name="MinimumQuantityAvailable" Type="Int32" />
+    <NavigationProperty Name="StatusType" Relationship="ECommerceModel.FK_Inventory_StatusType" FromRole="Inventory" ToRole="StatusType" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Inventory_Product">
+    <End Type="ECommerceModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="ECommerceModel.Inventory" Role="Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="StatusType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Inventory" Relationship="ECommerceModel.FK_Inventory_StatusType" FromRole="StatusType" ToRole="Inventory" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Inventory_StatusType">
+    <End Type="ECommerceModel.StatusType" Role="StatusType" Multiplicity="1" />
+    <End Type="ECommerceModel.Inventory" Role="Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="StatusTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Audience">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Secret" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RefreshTokenLifeTime" Type="Int32" Nullable="false" />
+    <Property Name="AllowedOrigin" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="RefreshToken" Relationship="ECommerceModel.FK_RefreshToken_Audience" FromRole="Audience" ToRole="RefreshToken" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Resource" Relationship="ECommerceModel.FK_Resource_Module" FromRole="Module" ToRole="Resource" />
+    <NavigationProperty Name="Product" Relationship="ECommerceModel.FK_Product_Module" FromRole="Module" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="RefreshToken">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="AudienceId" Type="Guid" Nullable="false" />
+    <Property Name="IssuedUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpiresUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProtectedTicket" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Audience" Relationship="ECommerceModel.FK_RefreshToken_Audience" FromRole="RefreshToken" ToRole="Audience" />
+    <NavigationProperty Name="User" Relationship="ECommerceModel.FK_RefreshToken_User" FromRole="RefreshToken" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Resource">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ParentId" Type="Guid" />
+    <Property Name="ModuleId" Type="Guid" Nullable="false" />
+    <Property Name="ResourceTypeId" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Module" Relationship="ECommerceModel.FK_Resource_Module" FromRole="Resource" ToRole="Module" />
+    <NavigationProperty Name="Resource1" Relationship="ECommerceModel.FK_Resource_Resource" FromRole="Resource" ToRole="Resource1" />
+    <NavigationProperty Name="Resource2" Relationship="ECommerceModel.FK_Resource_Resource" FromRole="Resource1" ToRole="Resource" />
+    <NavigationProperty Name="ResourceType" Relationship="ECommerceModel.FK_Resource_ResourceType" FromRole="Resource" ToRole="ResourceType" />
+    <NavigationProperty Name="RoleRight" Relationship="ECommerceModel.FK_RoleRight_Resource" FromRole="Resource" ToRole="RoleRight" />
+  </EntityType>
+  <EntityType Name="ResourceType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Resource" Relationship="ECommerceModel.FK_Resource_ResourceType" FromRole="ResourceType" ToRole="Resource" />
+    <NavigationProperty Name="Promotion" Relationship="ECommerceModel.FK_Promotion_ResourceType" FromRole="ResourceType" ToRole="Promotion" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="RoleRight" Relationship="ECommerceModel.FK_RoleRight_Role" FromRole="Role" ToRole="RoleRight" />
+    <NavigationProperty Name="UserRole" Relationship="ECommerceModel.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="RoleRight">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="RoleId" Type="Guid" Nullable="false" />
+    <Property Name="ResourceId" Type="Guid" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Resource" Relationship="ECommerceModel.FK_RoleRight_Resource" FromRole="RoleRight" ToRole="Resource" />
+    <NavigationProperty Name="Role" Relationship="ECommerceModel.FK_RoleRight_Role" FromRole="RoleRight" ToRole="Role" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserTypeId" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="RefreshToken" Relationship="ECommerceModel.FK_RefreshToken_User" FromRole="User" ToRole="RefreshToken" />
+    <NavigationProperty Name="UserType" Relationship="ECommerceModel.FK_User_UserType" FromRole="User" ToRole="UserType" />
+    <NavigationProperty Name="UserClaim" Relationship="ECommerceModel.FK_UserClaim_User" FromRole="User" ToRole="UserClaim" />
+    <NavigationProperty Name="UserRole" Relationship="ECommerceModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="UserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="User" Relationship="ECommerceModel.FK_UserClaim_User" FromRole="UserClaim" ToRole="User" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="RoleId" Type="Guid" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Role" Relationship="ECommerceModel.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="ECommerceModel.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="User" Relationship="ECommerceModel.FK_User_UserType" FromRole="UserType" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_RefreshToken_Audience">
+    <End Type="ECommerceModel.Audience" Role="Audience" Multiplicity="1" />
+    <End Type="ECommerceModel.RefreshToken" Role="RefreshToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Audience">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefreshToken">
+        <PropertyRef Name="AudienceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_Module">
+    <End Type="ECommerceModel.Module" Role="Module" Multiplicity="1" />
+    <End Type="ECommerceModel.Resource" Role="Resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Resource">
+        <PropertyRef Name="ModuleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefreshToken_User">
+    <End Type="ECommerceModel.User" Role="User" Multiplicity="1" />
+    <End Type="ECommerceModel.RefreshToken" Role="RefreshToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefreshToken">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_Resource">
+    <End Type="ECommerceModel.Resource" Role="Resource" Multiplicity="0..1" />
+    <End Type="ECommerceModel.Resource" Role="Resource1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Resource1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_ResourceType">
+    <End Type="ECommerceModel.ResourceType" Role="ResourceType" Multiplicity="1" />
+    <End Type="ECommerceModel.Resource" Role="Resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResourceType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Resource">
+        <PropertyRef Name="ResourceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleRight_Resource">
+    <End Type="ECommerceModel.Resource" Role="Resource" Multiplicity="1" />
+    <End Type="ECommerceModel.RoleRight" Role="RoleRight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleRight">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleRight_Role">
+    <End Type="ECommerceModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="ECommerceModel.RoleRight" Role="RoleRight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleRight">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Type="ECommerceModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="ECommerceModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserType">
+    <End Type="ECommerceModel.UserType" Role="UserType" Multiplicity="1" />
+    <End Type="ECommerceModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserClaim_User">
+    <End Type="ECommerceModel.User" Role="User" Multiplicity="1" />
+    <End Type="ECommerceModel.UserClaim" Role="UserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Type="ECommerceModel.User" Role="User" Multiplicity="1" />
+    <End Type="ECommerceModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FeatureType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Key" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="ProductFeature" Relationship="ECommerceModel.FK_ProductFeature_FeatureType" FromRole="FeatureType" ToRole="ProductFeature" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductFeature">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="FeatureTypeId" Type="Guid" Nullable="false" />
+    <Property Name="Reference" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="FeatureType" Relationship="ECommerceModel.FK_ProductFeature_FeatureType" FromRole="ProductFeature" ToRole="FeatureType" />
+    <NavigationProperty Name="Product" Relationship="ECommerceModel.FK_Product_ProductFeatureId" FromRole="ProductFeature" ToRole="Product" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ProductFeature_FeatureType">
+    <End Type="ECommerceModel.FeatureType" Role="FeatureType" Multiplicity="1" />
+    <End Type="ECommerceModel.ProductFeature" Role="ProductFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FeatureType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductFeature">
+        <PropertyRef Name="FeatureTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductFeatureId">
+    <End Type="ECommerceModel.ProductFeature" Role="ProductFeature" Multiplicity="0..1" />
+    <End Type="ECommerceModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductFeature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductFeatureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Promotion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="PromotionTypeId" Type="Guid" Nullable="false" />
+    <Property Name="ResourceTypeId" Type="Guid" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="PromotionType" Relationship="ECommerceModel.FK_Promotion_PromotionType" FromRole="Promotion" ToRole="PromotionType" />
+    <NavigationProperty Name="ResourceType" Relationship="ECommerceModel.FK_Promotion_ResourceType" FromRole="Promotion" ToRole="ResourceType" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PromotionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Promotion" Relationship="ECommerceModel.FK_Promotion_PromotionType" FromRole="PromotionType" ToRole="Promotion" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Promotion_PromotionType">
+    <End Type="ECommerceModel.PromotionType" Role="PromotionType" Multiplicity="1" />
+    <End Type="ECommerceModel.Promotion" Role="Promotion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PromotionType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Promotion">
+        <PropertyRef Name="PromotionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Promotion_ResourceType">
+    <End Type="ECommerceModel.ResourceType" Role="ResourceType" Multiplicity="1" />
+    <End Type="ECommerceModel.Promotion" Role="Promotion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResourceType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Promotion">
+        <PropertyRef Name="ResourceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Module">
+    <End Type="ECommerceModel.Module" Role="Module" Multiplicity="1" />
+    <End Type="ECommerceModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ModuleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

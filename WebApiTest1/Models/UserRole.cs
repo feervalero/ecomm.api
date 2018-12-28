@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApiTest1.Models
+namespace ECommerceAPI.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,6 +17,7 @@ namespace WebApiTest1.Models
         public System.Guid Id { get; set; }
         public System.Guid UserId { get; set; }
         public System.Guid RoleId { get; set; }
+        public bool Active { get; set; }
         public byte[] RowVersion { get; set; }
     
         public virtual Role Role { get; set; }
