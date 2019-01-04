@@ -12,15 +12,18 @@ namespace WebApiTest1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RoleRight
+    public partial class vwInventoryBySku
     {
         public System.Guid Id { get; set; }
-        public System.Guid RoleId { get; set; }
-        public System.Guid ResourceId { get; set; }
-        public bool Active { get; set; }
-        public byte[] RowVersion { get; set; }
-    
-        public virtual Resource Resource { get; set; }
-        public virtual Role Role { get; set; }
+        public string ModelNumber { get; set; }
+        public string Variant { get; set; }
+        public string Description { get; set; }
+        public bool ProductActive { get; set; }
+        public Nullable<int> QuantityOnReserve { get; set; }
+        public Nullable<int> QuantityAvailable { get; set; }
+        public Nullable<int> MinimumQuantityAvailable { get; set; }
+        public bool InventoryActive { get; set; }
+        public string Value { get; set; }
+        public bool StatusTypeActive { get; set; }
     }
 }

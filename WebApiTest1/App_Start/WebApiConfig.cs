@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
 using System.Web.Http.OData.Builder;
 using System.Web.Http.OData.Extensions;
-using ECommerceAPI.Models;
 using Newtonsoft.Json.Serialization;
-using Swashbuckle.Application;
-
-namespace ECommerceAPI
+using WebApiTest1.Controllers;
+using WebApiTest1.Models;
+namespace WebApiTest1
 {
     public static class WebApiConfig
     {
@@ -23,7 +20,7 @@ namespace ECommerceAPI
             builder.EntitySet<Price>("Prices");
             builder.EntitySet<Audience>("Audiences");
             builder.EntitySet<FeatureType>("FeatureTypes");
-            builder.EntitySet<Inventory>("Inventory");
+            builder.EntitySet<Inventory>("Inventories");
             builder.EntitySet<Module>("Modules");
             builder.EntitySet<OrderDetail>("OrderDetails");
             builder.EntitySet<PaymentMethod>("PaymentMethods");
@@ -39,6 +36,11 @@ namespace ECommerceAPI
             builder.EntitySet<StatusType>("StatusTypes");
             builder.EntitySet<User>("Users");
             builder.EntitySet<UserType>("UserTypes");
+
+
+            builder.EntitySet<vwInventoryBySku>("GetInventoryBySku");
+                
+
 
             config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
             // Web API routes

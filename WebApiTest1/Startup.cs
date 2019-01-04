@@ -1,14 +1,11 @@
-﻿using Microsoft.Owin;
-using System.Web.Http;
-using ECommerceAPI;
-using System;
-using Owin;
+﻿using System.Web.Http;
+using Microsoft.Owin;
 using Microsoft.Owin.Cors;
-using Newtonsoft.Json.Serialization;
-
+using Owin;
+using WebApiTest1;
 
 [assembly: OwinStartup(typeof(Startup))]
-namespace ECommerceAPI
+namespace WebApiTest1
 {
     public partial class Startup
     {

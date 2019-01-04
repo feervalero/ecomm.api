@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ECommerceModelStoreContainer" CdmEntityContainer="ECommerceEntities">
     <EntitySetMapping Name="Audience">
-      <EntityTypeMapping TypeName="ECommerceModel.Audience">
+      <EntityTypeMapping TypeName="ECommerceAPI.Audience">
         <MappingFragment StoreEntitySet="Audience">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -16,7 +16,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FeatureType">
-      <EntityTypeMapping TypeName="ECommerceModel.FeatureType">
+      <EntityTypeMapping TypeName="ECommerceAPI.FeatureType">
         <MappingFragment StoreEntitySet="FeatureType">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Value" ColumnName="Value" />
@@ -27,7 +27,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Inventory">
-      <EntityTypeMapping TypeName="ECommerceModel.Inventory">
+      <EntityTypeMapping TypeName="ECommerceAPI.Inventory">
         <MappingFragment StoreEntitySet="Inventory">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
@@ -39,7 +39,7 @@
           <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
         </MappingFragment>
       </EntityTypeMapping>
-      <EntityTypeMapping TypeName="ECommerceModel.Inventory">
+      <EntityTypeMapping TypeName="ECommerceAPI.Inventory">
         <ModificationFunctionMapping>
           <InsertFunction FunctionName="ECommerceModel.Store.Inventory_Add">
             <ScalarProperty Name="Active" ParameterName="Active" />
@@ -65,7 +65,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Module">
-      <EntityTypeMapping TypeName="ECommerceModel.Module">
+      <EntityTypeMapping TypeName="ECommerceAPI.Module">
         <MappingFragment StoreEntitySet="Module">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -76,7 +76,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Order">
-      <EntityTypeMapping TypeName="ECommerceModel.Order">
+      <EntityTypeMapping TypeName="ECommerceAPI.Order">
         <MappingFragment StoreEntitySet="Order">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -88,7 +88,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderDetail">
-      <EntityTypeMapping TypeName="ECommerceModel.OrderDetail">
+      <EntityTypeMapping TypeName="ECommerceAPI.OrderDetail">
         <MappingFragment StoreEntitySet="OrderDetail">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="OrderId" ColumnName="OrderId" />
@@ -103,7 +103,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Payment">
-      <EntityTypeMapping TypeName="ECommerceModel.Payment">
+      <EntityTypeMapping TypeName="ECommerceAPI.Payment">
         <MappingFragment StoreEntitySet="Payment">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="OrderId" ColumnName="OrderId" />
@@ -118,7 +118,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PaymentMethod">
-      <EntityTypeMapping TypeName="ECommerceModel.PaymentMethod">
+      <EntityTypeMapping TypeName="ECommerceAPI.PaymentMethod">
         <MappingFragment StoreEntitySet="PaymentMethod">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -129,7 +129,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Price">
-      <EntityTypeMapping TypeName="ECommerceModel.Price">
+      <EntityTypeMapping TypeName="ECommerceAPI.Price">
         <MappingFragment StoreEntitySet="Price">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="MSRP" ColumnName="MSRP" />
@@ -142,7 +142,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PriceType">
-      <EntityTypeMapping TypeName="ECommerceModel.PriceType">
+      <EntityTypeMapping TypeName="ECommerceAPI.PriceType">
         <MappingFragment StoreEntitySet="PriceType">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Value" ColumnName="Value" />
@@ -152,7 +152,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Product">
-      <EntityTypeMapping TypeName="ECommerceModel.Product">
+      <EntityTypeMapping TypeName="ECommerceAPI.Product">
         <MappingFragment StoreEntitySet="Product">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="PriceId" ColumnName="PriceId" />
@@ -167,7 +167,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProductFeature">
-      <EntityTypeMapping TypeName="ECommerceModel.ProductFeature">
+      <EntityTypeMapping TypeName="ECommerceAPI.ProductFeature">
         <MappingFragment StoreEntitySet="ProductFeature">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FeatureTypeId" ColumnName="FeatureTypeId" />
@@ -180,7 +180,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Promotion">
-      <EntityTypeMapping TypeName="ECommerceModel.Promotion">
+      <EntityTypeMapping TypeName="ECommerceAPI.Promotion">
         <MappingFragment StoreEntitySet="Promotion">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="PromotionTypeId" ColumnName="PromotionTypeId" />
@@ -194,7 +194,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PromotionType">
-      <EntityTypeMapping TypeName="ECommerceModel.PromotionType">
+      <EntityTypeMapping TypeName="ECommerceAPI.PromotionType">
         <MappingFragment StoreEntitySet="PromotionType">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Value" ColumnName="Value" />
@@ -204,7 +204,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RefreshToken">
-      <EntityTypeMapping TypeName="ECommerceModel.RefreshToken">
+      <EntityTypeMapping TypeName="ECommerceAPI.RefreshToken">
         <MappingFragment StoreEntitySet="RefreshToken">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -218,7 +218,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Resource">
-      <EntityTypeMapping TypeName="ECommerceModel.Resource">
+      <EntityTypeMapping TypeName="ECommerceAPI.Resource">
         <MappingFragment StoreEntitySet="Resource">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ParentId" ColumnName="ParentId" />
@@ -232,7 +232,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ResourceType">
-      <EntityTypeMapping TypeName="ECommerceModel.ResourceType">
+      <EntityTypeMapping TypeName="ECommerceAPI.ResourceType">
         <MappingFragment StoreEntitySet="ResourceType">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -243,7 +243,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Role">
-      <EntityTypeMapping TypeName="ECommerceModel.Role">
+      <EntityTypeMapping TypeName="ECommerceAPI.Role">
         <MappingFragment StoreEntitySet="Role">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -253,7 +253,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RoleRight">
-      <EntityTypeMapping TypeName="ECommerceModel.RoleRight">
+      <EntityTypeMapping TypeName="ECommerceAPI.RoleRight">
         <MappingFragment StoreEntitySet="RoleRight">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
@@ -264,7 +264,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="StatusType">
-      <EntityTypeMapping TypeName="ECommerceModel.StatusType">
+      <EntityTypeMapping TypeName="ECommerceAPI.StatusType">
         <MappingFragment StoreEntitySet="StatusType">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Value" ColumnName="Value" />
@@ -274,7 +274,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="User">
-      <EntityTypeMapping TypeName="ECommerceModel.User">
+      <EntityTypeMapping TypeName="ECommerceAPI.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
@@ -286,7 +286,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserClaim">
-      <EntityTypeMapping TypeName="ECommerceModel.UserClaim">
+      <EntityTypeMapping TypeName="ECommerceAPI.UserClaim">
         <MappingFragment StoreEntitySet="UserClaim">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -298,7 +298,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserRole">
-      <EntityTypeMapping TypeName="ECommerceModel.UserRole">
+      <EntityTypeMapping TypeName="ECommerceAPI.UserRole">
         <MappingFragment StoreEntitySet="UserRole">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -309,7 +309,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserType">
-      <EntityTypeMapping TypeName="ECommerceModel.UserType">
+      <EntityTypeMapping TypeName="ECommerceAPI.UserType">
         <MappingFragment StoreEntitySet="UserType">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -321,5 +321,22 @@
     <FunctionImportMapping FunctionImportName="Inventory_Add" FunctionName="ECommerceModel.Store.Inventory_Add" />
     <FunctionImportMapping FunctionImportName="Inventory_Del" FunctionName="ECommerceModel.Store.Inventory_Del" />
     <FunctionImportMapping FunctionImportName="Inventory_Upd" FunctionName="ECommerceModel.Store.Inventory_Upd" />
+    <EntitySetMapping Name="vwInventoryBySku">
+      <EntityTypeMapping TypeName="ECommerceAPI.vwInventoryBySku">
+        <MappingFragment StoreEntitySet="vwInventoryBySku">
+          <ScalarProperty Name="StatusTypeActive" ColumnName="StatusTypeActive" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="InventoryActive" ColumnName="InventoryActive" />
+          <ScalarProperty Name="MinimumQuantityAvailable" ColumnName="MinimumQuantityAvailable" />
+          <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
+          <ScalarProperty Name="QuantityOnReserve" ColumnName="QuantityOnReserve" />
+          <ScalarProperty Name="ProductActive" ColumnName="ProductActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Variant" ColumnName="Variant" />
+          <ScalarProperty Name="ModelNumber" ColumnName="ModelNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -1,3 +1,4 @@
+C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\obj\Debug\ECommerceAPI.csproj.CoreCompileInputs.cache
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\WebApiTest1.dll.config
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\WebApiTest1.dll
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\WebApiTest1.pdb
@@ -124,8 +125,6 @@ C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\ko\System.Spatial.res
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\ru\System.Spatial.resources.dll
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\obj\Debug\ECommerceAPI.csproj.CoreCompileInputs.cache
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\obj\Debug\ECommerceAPI.csproj.CopyComplete
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\obj\Debug\WebApiTest1.dll
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\obj\Debug\WebApiTest1.pdb
-C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\obj\Debug\ECommerceAPI.csprojAssemblyReference.cache

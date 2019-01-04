@@ -11,16 +11,16 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
-using ECommerceAPI.Models;
+using WebApiTest1.Models;
 
-namespace ECommerceAPI.Controllers
+namespace WebApiTest1.Controllers
 {
     /*
     The WebApiConfig class may require additional changes to add a route for this controller. Merge these statements into the Register method of the WebApiConfig class as applicable. Note that OData URLs are case sensitive.
 
     using System.Web.Http.OData.Builder;
     using System.Web.Http.OData.Extensions;
-    using WebApiTest1.Models;
+    using ECommerceAPI.Models;
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
     builder.EntitySet<Inventory>("Inventories");
     builder.EntitySet<Product>("Product"); 
@@ -43,6 +43,13 @@ namespace ECommerceAPI.Controllers
         public SingleResult<Inventory> GetInventory([FromODataUri] Guid key)
         {
             return SingleResult.Create(db.Inventory.Where(inventory => inventory.Id == key));
+        }
+
+
+        [EnableQuery]
+        public IQueryable<Inventory> GetInventoryBySku()
+        {
+            return db.Inventory;
         }
 
         // PUT: odata/Inventories(5)

@@ -269,6 +269,31 @@
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwInventoryBySku">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="ModelNumber" />
+      <PropertyRef Name="Variant" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="ProductActive" />
+      <PropertyRef Name="InventoryActive" />
+      <PropertyRef Name="Value" />
+      <PropertyRef Name="StatusTypeActive" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModelNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Variant" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="ProductActive" Type="bit" Nullable="false" />
+    <Property Name="QuantityOnReserve" Type="int" />
+    <Property Name="QuantityAvailable" Type="int" />
+    <Property Name="MinimumQuantityAvailable" Type="int" />
+    <Property Name="InventoryActive" Type="bit" Nullable="false" />
+    <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="StatusTypeActive" Type="bit" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Inventory_Product">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
@@ -602,6 +627,21 @@
     <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vwInventoryBySku" EntityType="Self.vwInventoryBySku" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwInventoryBySku].[Id] AS [Id], 
+    [vwInventoryBySku].[ModelNumber] AS [ModelNumber], 
+    [vwInventoryBySku].[Variant] AS [Variant], 
+    [vwInventoryBySku].[Description] AS [Description], 
+    [vwInventoryBySku].[ProductActive] AS [ProductActive], 
+    [vwInventoryBySku].[QuantityOnReserve] AS [QuantityOnReserve], 
+    [vwInventoryBySku].[QuantityAvailable] AS [QuantityAvailable], 
+    [vwInventoryBySku].[MinimumQuantityAvailable] AS [MinimumQuantityAvailable], 
+    [vwInventoryBySku].[InventoryActive] AS [InventoryActive], 
+    [vwInventoryBySku].[Value] AS [Value], 
+    [vwInventoryBySku].[StatusTypeActive] AS [StatusTypeActive]
+    FROM [dbo].[vwInventoryBySku] AS [vwInventoryBySku]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Inventory_Product" Association="Self.FK_Inventory_Product">
       <End Role="Product" EntitySet="Product" />
       <End Role="Inventory" EntitySet="Inventory" />

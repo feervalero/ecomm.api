@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ECommerceAPI.Models
+namespace WebApiTest1.Models
 {
     using System;
     using System.Data.Entity;
@@ -51,6 +51,7 @@ namespace ECommerceAPI.Models
         public virtual DbSet<UserClaim> UserClaim { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<UserType> UserType { get; set; }
+        public virtual DbSet<vwInventoryBySku> vwInventoryBySku { get; set; }
     
         public virtual ObjectResult<Nullable<System.Guid>> Inventory_Add(Nullable<System.Guid> productId, Nullable<System.Guid> statusTypeId, Nullable<int> quantityOnReserve, Nullable<int> quantityAvailable, Nullable<int> minimumQuantityAvailable, Nullable<bool> active)
         {

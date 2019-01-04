@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
+using System.Web.Http.OData.Routing;
 using WebApiTest1.Models;
 
 namespace WebApiTest1.Controllers
@@ -16,31 +22,29 @@ namespace WebApiTest1.Controllers
     using System.Web.Http.OData.Extensions;
     using WebApiTest1.Models;
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-    builder.EntitySet<RefreshToken>("RefreshTokens");
-    builder.EntitySet<Audience>("Audience"); 
-    builder.EntitySet<User>("User"); 
+    builder.EntitySet<vwInventoryBySku>("GetInventoryBySku");
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class RefreshTokensController : ODataController
+    public class GetInventoryBySkuController : ODataController
     {
         private ECommerceEntities db = new ECommerceEntities();
 
-        // GET: odata/RefreshTokens
+        // GET: odata/GetInventoryBySku
         [EnableQuery]
-        public IQueryable<RefreshToken> GetRefreshTokens()
+        public IQueryable<vwInventoryBySku> GetGetInventoryBySku()
         {
-            return db.RefreshToken;
+            return db.vwInventoryBySku;
         }
 
-        // GET: odata/RefreshTokens(5)
+        // GET: odata/GetInventoryBySku(5)
         [EnableQuery]
-        public SingleResult<RefreshToken> GetRefreshToken([FromODataUri] Guid key)
+        public SingleResult<vwInventoryBySku> GetvwInventoryBySku([FromODataUri] Guid key)
         {
-            return SingleResult.Create(db.RefreshToken.Where(refreshToken => refreshToken.Id == key));
+            return SingleResult.Create(db.vwInventoryBySku.Where(vwInventoryBySku => vwInventoryBySku.Id == key));
         }
 
-        // PUT: odata/RefreshTokens(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, Delta<RefreshToken> patch)
+        // PUT: odata/GetInventoryBySku(5)
+        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, Delta<vwInventoryBySku> patch)
         {
             Validate(patch.GetEntity());
 
@@ -49,13 +53,13 @@ namespace WebApiTest1.Controllers
                 return BadRequest(ModelState);
             }
 
-            RefreshToken refreshToken = await db.RefreshToken.FindAsync(key);
-            if (refreshToken == null)
+            vwInventoryBySku vwInventoryBySku = await db.vwInventoryBySku.FindAsync(key);
+            if (vwInventoryBySku == null)
             {
                 return NotFound();
             }
 
-            patch.Put(refreshToken);
+            patch.Put(vwInventoryBySku);
 
             try
             {
@@ -63,7 +67,7 @@ namespace WebApiTest1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RefreshTokenExists(key))
+                if (!vwInventoryBySkuExists(key))
                 {
                     return NotFound();
                 }
@@ -73,18 +77,18 @@ namespace WebApiTest1.Controllers
                 }
             }
 
-            return Updated(refreshToken);
+            return Updated(vwInventoryBySku);
         }
 
-        // POST: odata/RefreshTokens
-        public async Task<IHttpActionResult> Post(RefreshToken refreshToken)
+        // POST: odata/GetInventoryBySku
+        public async Task<IHttpActionResult> Post(vwInventoryBySku vwInventoryBySku)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.RefreshToken.Add(refreshToken);
+            db.vwInventoryBySku.Add(vwInventoryBySku);
 
             try
             {
@@ -92,7 +96,7 @@ namespace WebApiTest1.Controllers
             }
             catch (DbUpdateException)
             {
-                if (RefreshTokenExists(refreshToken.Id))
+                if (vwInventoryBySkuExists(vwInventoryBySku.Id))
                 {
                     return Conflict();
                 }
@@ -102,12 +106,12 @@ namespace WebApiTest1.Controllers
                 }
             }
 
-            return Created(refreshToken);
+            return Created(vwInventoryBySku);
         }
 
-        // PATCH: odata/RefreshTokens(5)
+        // PATCH: odata/GetInventoryBySku(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<RefreshToken> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<vwInventoryBySku> patch)
         {
             Validate(patch.GetEntity());
 
@@ -116,13 +120,13 @@ namespace WebApiTest1.Controllers
                 return BadRequest(ModelState);
             }
 
-            RefreshToken refreshToken = await db.RefreshToken.FindAsync(key);
-            if (refreshToken == null)
+            vwInventoryBySku vwInventoryBySku = await db.vwInventoryBySku.FindAsync(key);
+            if (vwInventoryBySku == null)
             {
                 return NotFound();
             }
 
-            patch.Patch(refreshToken);
+            patch.Patch(vwInventoryBySku);
 
             try
             {
@@ -130,7 +134,7 @@ namespace WebApiTest1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RefreshTokenExists(key))
+                if (!vwInventoryBySkuExists(key))
                 {
                     return NotFound();
                 }
@@ -140,36 +144,22 @@ namespace WebApiTest1.Controllers
                 }
             }
 
-            return Updated(refreshToken);
+            return Updated(vwInventoryBySku);
         }
 
-        // DELETE: odata/RefreshTokens(5)
+        // DELETE: odata/GetInventoryBySku(5)
         public async Task<IHttpActionResult> Delete([FromODataUri] Guid key)
         {
-            RefreshToken refreshToken = await db.RefreshToken.FindAsync(key);
-            if (refreshToken == null)
+            vwInventoryBySku vwInventoryBySku = await db.vwInventoryBySku.FindAsync(key);
+            if (vwInventoryBySku == null)
             {
                 return NotFound();
             }
 
-            db.RefreshToken.Remove(refreshToken);
+            db.vwInventoryBySku.Remove(vwInventoryBySku);
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // GET: odata/RefreshTokens(5)/Audience
-        [EnableQuery]
-        public SingleResult<Audience> GetAudience([FromODataUri] Guid key)
-        {
-            return SingleResult.Create(db.RefreshToken.Where(m => m.Id == key).Select(m => m.Audience));
-        }
-
-        // GET: odata/RefreshTokens(5)/User
-        [EnableQuery]
-        public SingleResult<User> GetUser([FromODataUri] Guid key)
-        {
-            return SingleResult.Create(db.RefreshToken.Where(m => m.Id == key).Select(m => m.User));
         }
 
         protected override void Dispose(bool disposing)
@@ -181,9 +171,9 @@ namespace WebApiTest1.Controllers
             base.Dispose(disposing);
         }
 
-        private bool RefreshTokenExists(Guid key)
+        private bool vwInventoryBySkuExists(Guid key)
         {
-            return db.RefreshToken.Count(e => e.Id == key) > 0;
+            return db.vwInventoryBySku.Count(e => e.Id == key) > 0;
         }
     }
 }

@@ -1,7 +1,7 @@
 /*Orders*/
 
 USE [ECommerce]
-
+IF EXISTS(select * from sys.views where name = 'vwInventoryBySku') DROP VIEW [vwInventoryBySku];
 IF EXISTS(select * from sys.tables where name = 'Inventory') DROP TABLE [Inventory];
 IF EXISTS (SELECT * FROM sys.tables WHERE name = 'StatusType') DROP TABLE [StatusType];
 IF EXISTS (SELECT * FROM sys.tables WHERE name = 'Payment') DROP TABLE [Payment];
@@ -403,3 +403,37 @@ CREATE TABLE [dbo].[Inventory](
 GO
 
 
+/*
+CREATE VIEW [dbo].[vwCatalogItemTranslation]
+AS
+SELECT	IT.[Id]
+		, CONVERT(VARCHAR(100), CT.[Name]) [CatalogName]
+		, CONVERT(VARCHAR(100), LN.[Name]) [LanguageName]
+	FROM [dbo].[CatalogItemTranslation] IT WITH(NOLOCK)
+		 INNER JOIN [dbo].[CatalogItem] CI WITH(NOLOCK)
+			ON IT.[CatalogItemId] = CI.[Id]
+		 INNER JOIN [dbo].[Catalog] CT WITH(NOLOCK)
+			ON CI.[CatalogId] = CT.[Id]
+		 INNER JOIN [dbo].[Language]	LN WITH(NOLOCK)
+			ON IT.[LanguageId] = LN.[Id]
+GO
+*/
+
+CREATE VIEW [dbo].[vwInventoryBySku]
+AS 
+SELECT 
+	Prod.[Id],
+	Prod.[ModelNumber],
+	Prod.[Variant],
+	Prod.[Description],
+	Prod.[Active] as ProductActive,
+	Inv.[QuantityOnReserve],
+	Inv.[QuantityAvailable],
+	Inv.[MinimumQuantityAvailable],
+	Inv.[Active] as InventoryActive,
+	Stat.[Value],
+	Stat.[Active] as StatusTypeActive
+	FROM [dbo].[Inventory] Inv
+	JOIN [dbo].[Product] Prod ON Prod.[Id] = Inv.[ProductId]
+	JOIN [dbo].[StatusType] Stat ON Stat.[Id] = Inv.[StatusTypeId]
+GO
