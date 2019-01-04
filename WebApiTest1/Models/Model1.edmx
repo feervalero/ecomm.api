@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ECommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ECommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Audience">
           <Key>
             <PropertyRef Name="Id" />
@@ -562,6 +562,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Inventory_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="StatusTypeId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="QuantityOnReserve" Type="int" Mode="In" />
+          <Parameter Name="QuantityAvailable" Type="int" Mode="In" />
+          <Parameter Name="MinimumQuantityAvailable" Type="int" Mode="In" />
+          <Parameter Name="Active" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Inventory_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="Inventory_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProductId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="StatusTypeId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="QuantityOnReserve" Type="int" Mode="In" />
+          <Parameter Name="QuantityAvailable" Type="int" Mode="In" />
+          <Parameter Name="MinimumQuantityAvailable" Type="int" Mode="In" />
+          <Parameter Name="Active" Type="bit" Mode="In" />
+        </Function>
         <EntityContainer Name="ECommerceModelStoreContainer">
           <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeatureType" EntityType="Self.FeatureType" Schema="dbo" store:Type="Tables" />
@@ -684,8 +704,7 @@
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ECommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1415,6 +1434,26 @@
             <End Role="User" EntitySet="User" />
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
+          <FunctionImport Name="Inventory_Add" ReturnType="Collection(Guid)">
+            <Parameter Name="ProductId" Mode="In" Type="Guid" />
+            <Parameter Name="StatusTypeId" Mode="In" Type="Guid" />
+            <Parameter Name="QuantityOnReserve" Mode="In" Type="Int32" />
+            <Parameter Name="QuantityAvailable" Mode="In" Type="Int32" />
+            <Parameter Name="MinimumQuantityAvailable" Mode="In" Type="Int32" />
+            <Parameter Name="Active" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Inventory_Del">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="Inventory_Upd">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="ProductId" Mode="In" Type="Guid" />
+            <Parameter Name="StatusTypeId" Mode="In" Type="Guid" />
+            <Parameter Name="QuantityOnReserve" Mode="In" Type="Int32" />
+            <Parameter Name="QuantityAvailable" Mode="In" Type="Int32" />
+            <Parameter Name="MinimumQuantityAvailable" Mode="In" Type="Int32" />
+            <Parameter Name="Active" Mode="In" Type="Boolean" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -1459,6 +1498,30 @@
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="ECommerceModel.Inventory">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="ECommerceModel.Store.Inventory_Add">
+                  <ScalarProperty Name="Active" ParameterName="Active" />
+                  <ScalarProperty Name="MinimumQuantityAvailable" ParameterName="MinimumQuantityAvailable" />
+                  <ScalarProperty Name="QuantityAvailable" ParameterName="QuantityAvailable" />
+                  <ScalarProperty Name="QuantityOnReserve" ParameterName="QuantityOnReserve" />
+                  <ScalarProperty Name="StatusTypeId" ParameterName="StatusTypeId" />
+                  <ScalarProperty Name="ProductId" ParameterName="ProductId" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="ECommerceModel.Store.Inventory_Upd">
+                  <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+                  <ScalarProperty Name="MinimumQuantityAvailable" ParameterName="MinimumQuantityAvailable" Version="Current" />
+                  <ScalarProperty Name="QuantityAvailable" ParameterName="QuantityAvailable" Version="Current" />
+                  <ScalarProperty Name="QuantityOnReserve" ParameterName="QuantityOnReserve" Version="Current" />
+                  <ScalarProperty Name="StatusTypeId" ParameterName="StatusTypeId" Version="Current" />
+                  <ScalarProperty Name="ProductId" ParameterName="ProductId" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="ECommerceModel.Store.Inventory_Del">
+                  <ScalarProperty Name="Id" ParameterName="Id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Module">
@@ -1715,6 +1778,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Inventory_Add" FunctionName="ECommerceModel.Store.Inventory_Add" />
+          <FunctionImportMapping FunctionImportName="Inventory_Del" FunctionName="ECommerceModel.Store.Inventory_Del" />
+          <FunctionImportMapping FunctionImportName="Inventory_Upd" FunctionName="ECommerceModel.Store.Inventory_Upd" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

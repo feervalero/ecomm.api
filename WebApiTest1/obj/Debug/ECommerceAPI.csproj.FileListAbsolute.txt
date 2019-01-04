@@ -43,7 +43,6 @@ C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\Microsoft.Web.Infrast
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\Newtonsoft.Json.dll
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\Owin.dll
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\Swashbuckle.Core.dll
-C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\Swashbuckle.OData.dll
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\System.Net.Http.Formatting.dll
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\System.Spatial.dll
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\System.Web.Cors.dll
@@ -63,7 +62,6 @@ C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\Microsoft.OData.Edm.x
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\Microsoft.Owin.xml
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\Microsoft.Owin.Cors.xml
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\Microsoft.Spatial.xml
-C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\Swashbuckle.OData.pdb
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\System.Spatial.xml
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\System.Web.Http.OData.xml
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\System.Web.OData.xml

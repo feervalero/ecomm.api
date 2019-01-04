@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ECommerceAPI.Models
+namespace WebApiTest1.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ECommerceEntities : DbContext
     {
@@ -49,5 +51,76 @@ namespace ECommerceAPI.Models
         public virtual DbSet<UserClaim> UserClaim { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<UserType> UserType { get; set; }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> Inventory_Add(Nullable<System.Guid> productId, Nullable<System.Guid> statusTypeId, Nullable<int> quantityOnReserve, Nullable<int> quantityAvailable, Nullable<int> minimumQuantityAvailable, Nullable<bool> active)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(System.Guid));
+    
+            var statusTypeIdParameter = statusTypeId.HasValue ?
+                new ObjectParameter("StatusTypeId", statusTypeId) :
+                new ObjectParameter("StatusTypeId", typeof(System.Guid));
+    
+            var quantityOnReserveParameter = quantityOnReserve.HasValue ?
+                new ObjectParameter("QuantityOnReserve", quantityOnReserve) :
+                new ObjectParameter("QuantityOnReserve", typeof(int));
+    
+            var quantityAvailableParameter = quantityAvailable.HasValue ?
+                new ObjectParameter("QuantityAvailable", quantityAvailable) :
+                new ObjectParameter("QuantityAvailable", typeof(int));
+    
+            var minimumQuantityAvailableParameter = minimumQuantityAvailable.HasValue ?
+                new ObjectParameter("MinimumQuantityAvailable", minimumQuantityAvailable) :
+                new ObjectParameter("MinimumQuantityAvailable", typeof(int));
+    
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("Active", active) :
+                new ObjectParameter("Active", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("Inventory_Add", productIdParameter, statusTypeIdParameter, quantityOnReserveParameter, quantityAvailableParameter, minimumQuantityAvailableParameter, activeParameter);
+        }
+    
+        public virtual int Inventory_Del(Nullable<System.Guid> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Inventory_Del", idParameter);
+        }
+    
+        public virtual int Inventory_Upd(Nullable<System.Guid> id, Nullable<System.Guid> productId, Nullable<System.Guid> statusTypeId, Nullable<int> quantityOnReserve, Nullable<int> quantityAvailable, Nullable<int> minimumQuantityAvailable, Nullable<bool> active)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(System.Guid));
+    
+            var statusTypeIdParameter = statusTypeId.HasValue ?
+                new ObjectParameter("StatusTypeId", statusTypeId) :
+                new ObjectParameter("StatusTypeId", typeof(System.Guid));
+    
+            var quantityOnReserveParameter = quantityOnReserve.HasValue ?
+                new ObjectParameter("QuantityOnReserve", quantityOnReserve) :
+                new ObjectParameter("QuantityOnReserve", typeof(int));
+    
+            var quantityAvailableParameter = quantityAvailable.HasValue ?
+                new ObjectParameter("QuantityAvailable", quantityAvailable) :
+                new ObjectParameter("QuantityAvailable", typeof(int));
+    
+            var minimumQuantityAvailableParameter = minimumQuantityAvailable.HasValue ?
+                new ObjectParameter("MinimumQuantityAvailable", minimumQuantityAvailable) :
+                new ObjectParameter("MinimumQuantityAvailable", typeof(int));
+    
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("Active", active) :
+                new ObjectParameter("Active", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Inventory_Upd", idParameter, productIdParameter, statusTypeIdParameter, quantityOnReserveParameter, quantityAvailableParameter, minimumQuantityAvailableParameter, activeParameter);
+        }
     }
 }
