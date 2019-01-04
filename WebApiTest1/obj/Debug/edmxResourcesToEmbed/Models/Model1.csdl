@@ -726,5 +726,25 @@
       <End Role="User" EntitySet="User" />
       <End Role="UserRole" EntitySet="UserRole" />
     </AssociationSet>
+    <FunctionImport Name="Inventory_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="ProductId" Mode="In" Type="Guid" />
+      <Parameter Name="StatusTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="QuantityOnReserve" Mode="In" Type="Int32" />
+      <Parameter Name="QuantityAvailable" Mode="In" Type="Int32" />
+      <Parameter Name="MinimumQuantityAvailable" Mode="In" Type="Int32" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Inventory_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Inventory_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="ProductId" Mode="In" Type="Guid" />
+      <Parameter Name="StatusTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="QuantityOnReserve" Mode="In" Type="Int32" />
+      <Parameter Name="QuantityAvailable" Mode="In" Type="Int32" />
+      <Parameter Name="MinimumQuantityAvailable" Mode="In" Type="Int32" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
 </Schema>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApiTest1.Models
+namespace ECommerceAPI.Models
 {
     using System;
     using System.Collections.Generic;

@@ -39,6 +39,30 @@
           <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
         </MappingFragment>
       </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceModel.Inventory">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Inventory_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="MinimumQuantityAvailable" ParameterName="MinimumQuantityAvailable" />
+            <ScalarProperty Name="QuantityAvailable" ParameterName="QuantityAvailable" />
+            <ScalarProperty Name="QuantityOnReserve" ParameterName="QuantityOnReserve" />
+            <ScalarProperty Name="StatusTypeId" ParameterName="StatusTypeId" />
+            <ScalarProperty Name="ProductId" ParameterName="ProductId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Inventory_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="MinimumQuantityAvailable" ParameterName="MinimumQuantityAvailable" Version="Current" />
+            <ScalarProperty Name="QuantityAvailable" ParameterName="QuantityAvailable" Version="Current" />
+            <ScalarProperty Name="QuantityOnReserve" ParameterName="QuantityOnReserve" Version="Current" />
+            <ScalarProperty Name="StatusTypeId" ParameterName="StatusTypeId" Version="Current" />
+            <ScalarProperty Name="ProductId" ParameterName="ProductId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Inventory_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Module">
       <EntityTypeMapping TypeName="ECommerceModel.Module">
@@ -294,5 +318,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Inventory_Add" FunctionName="ECommerceModel.Store.Inventory_Add" />
+    <FunctionImportMapping FunctionImportName="Inventory_Del" FunctionName="ECommerceModel.Store.Inventory_Del" />
+    <FunctionImportMapping FunctionImportName="Inventory_Upd" FunctionName="ECommerceModel.Store.Inventory_Upd" />
   </EntityContainerMapping>
 </Mapping>

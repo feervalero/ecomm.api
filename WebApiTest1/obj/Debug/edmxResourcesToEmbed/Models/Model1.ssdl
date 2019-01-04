@@ -557,6 +557,26 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="Inventory_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProductId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="StatusTypeId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="QuantityOnReserve" Type="int" Mode="In" />
+    <Parameter Name="QuantityAvailable" Type="int" Mode="In" />
+    <Parameter Name="MinimumQuantityAvailable" Type="int" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="Inventory_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="Inventory_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="ProductId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="StatusTypeId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="QuantityOnReserve" Type="int" Mode="In" />
+    <Parameter Name="QuantityAvailable" Type="int" Mode="In" />
+    <Parameter Name="MinimumQuantityAvailable" Type="int" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+  </Function>
   <EntityContainer Name="ECommerceModelStoreContainer">
     <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FeatureType" EntityType="Self.FeatureType" Schema="dbo" store:Type="Tables" />
