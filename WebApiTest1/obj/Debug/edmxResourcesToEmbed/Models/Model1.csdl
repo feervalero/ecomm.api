@@ -25,21 +25,6 @@
     <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
     <NavigationProperty Name="ProductFeature" Relationship="Self.FK_ProductFeature_FeatureType" FromRole="FeatureType" ToRole="ProductFeature" />
   </EntityType>
-  <EntityType Name="Inventory">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="ProductId" Type="Guid" Nullable="false" />
-    <Property Name="StatusTypeId" Type="Guid" Nullable="false" />
-    <Property Name="QuantityOnReserve" Type="Int32" />
-    <Property Name="QuantityAvailable" Type="Int32" />
-    <Property Name="MinimumQuantityAvailable" Type="Int32" />
-    <Property Name="Active" Type="Boolean" Nullable="false" />
-    <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
-    <NavigationProperty Name="StatusType" Relationship="Self.FK_Inventory_StatusType" FromRole="Inventory" ToRole="StatusType" />
-  </EntityType>
   <EntityType Name="Module">
     <Key>
       <PropertyRef Name="Id" />
@@ -145,11 +130,11 @@
     <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Active" Type="Boolean" Nullable="false" />
     <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-    <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
     <NavigationProperty Name="Module" Relationship="Self.FK_Product_Module" FromRole="Product" ToRole="Module" />
     <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
     <NavigationProperty Name="Price" Relationship="Self.FK_Product_Price" FromRole="Product" ToRole="Price" />
     <NavigationProperty Name="ProductFeature" Relationship="Self.FK_Product_ProductFeature" FromRole="Product" ToRole="ProductFeature" />
+    <NavigationProperty Name="Inventory" Relationship="ECommerceAPI.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
   </EntityType>
   <EntityType Name="ProductFeature">
     <Key>
@@ -266,7 +251,7 @@
     <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Active" Type="Boolean" Nullable="false" />
     <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-    <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_StatusType" FromRole="StatusType" ToRole="Inventory" />
+    <NavigationProperty Name="Inventory" Relationship="ECommerceAPI.FK_Inventory_StatusType" FromRole="StatusType" ToRole="Inventory" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -338,30 +323,6 @@
       </Principal>
       <Dependent Role="ProductFeature">
         <PropertyRef Name="FeatureTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inventory_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="1" />
-    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Inventory">
-        <PropertyRef Name="ProductId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inventory_StatusType">
-    <End Role="StatusType" Type="Self.StatusType" Multiplicity="1" />
-    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="StatusType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Inventory">
-        <PropertyRef Name="StatusTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -608,7 +569,6 @@
   <EntityContainer Name="ECommerceEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Audience" EntityType="Self.Audience" />
     <EntitySet Name="FeatureType" EntityType="Self.FeatureType" />
-    <EntitySet Name="Inventory" EntityType="Self.Inventory" />
     <EntitySet Name="Module" EntityType="Self.Module" />
     <EntitySet Name="Order" EntityType="Self.Order" />
     <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" />
@@ -637,14 +597,6 @@
     <AssociationSet Name="FK_ProductFeature_FeatureType" Association="Self.FK_ProductFeature_FeatureType">
       <End Role="FeatureType" EntitySet="FeatureType" />
       <End Role="ProductFeature" EntitySet="ProductFeature" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inventory_Product" Association="Self.FK_Inventory_Product">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="Inventory" EntitySet="Inventory" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inventory_StatusType" Association="Self.FK_Inventory_StatusType">
-      <End Role="StatusType" EntitySet="StatusType" />
-      <End Role="Inventory" EntitySet="Inventory" />
     </AssociationSet>
     <AssociationSet Name="FK_Product_Module" Association="Self.FK_Product_Module">
       <End Role="Module" EntitySet="Module" />
@@ -726,27 +678,26 @@
       <End Role="User" EntitySet="User" />
       <End Role="UserRole" EntitySet="UserRole" />
     </AssociationSet>
-    <FunctionImport Name="Inventory_Add" ReturnType="Collection(Guid)">
-      <Parameter Name="ProductId" Mode="In" Type="Guid" />
-      <Parameter Name="StatusTypeId" Mode="In" Type="Guid" />
-      <Parameter Name="QuantityOnReserve" Mode="In" Type="Int32" />
-      <Parameter Name="QuantityAvailable" Mode="In" Type="Int32" />
-      <Parameter Name="MinimumQuantityAvailable" Mode="In" Type="Int32" />
-      <Parameter Name="Active" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="Inventory_Del">
-      <Parameter Name="Id" Mode="In" Type="Guid" />
-    </FunctionImport>
-    <FunctionImport Name="Inventory_Upd">
-      <Parameter Name="Id" Mode="In" Type="Guid" />
-      <Parameter Name="ProductId" Mode="In" Type="Guid" />
-      <Parameter Name="StatusTypeId" Mode="In" Type="Guid" />
-      <Parameter Name="QuantityOnReserve" Mode="In" Type="Int32" />
-      <Parameter Name="QuantityAvailable" Mode="In" Type="Int32" />
-      <Parameter Name="MinimumQuantityAvailable" Mode="In" Type="Int32" />
-      <Parameter Name="Active" Mode="In" Type="Boolean" />
-    </FunctionImport>
     <EntitySet Name="vwInventoryBySku" EntityType="ECommerceAPI.vwInventoryBySku" />
+    <EntitySet Name="Location" EntityType="ECommerceAPI.Location" />
+    <EntitySet Name="Warehouse" EntityType="ECommerceAPI.Warehouse" />
+    <EntitySet Name="Inventory" EntityType="ECommerceAPI.Inventory" />
+    <AssociationSet Name="FK_Inventory_Location" Association="ECommerceAPI.FK_Inventory_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_Product" Association="ECommerceAPI.FK_Inventory_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_StatusType" Association="ECommerceAPI.FK_Inventory_StatusType">
+      <End Role="StatusType" EntitySet="StatusType" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_Warehouse" Association="ECommerceAPI.FK_Inventory_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="vwInventoryBySku">
     <Key>
@@ -771,4 +722,93 @@
     <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="StatusTypeActive" Type="Boolean" Nullable="false" />
   </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Inventory" Relationship="ECommerceAPI.FK_Inventory_Location" FromRole="Location" ToRole="Inventory" />
+  </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Inventory" Relationship="ECommerceAPI.FK_Inventory_Warehouse" FromRole="Warehouse" ToRole="Inventory" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ProductId" Type="Guid" Nullable="false" />
+    <Property Name="StatusTypeId" Type="Guid" Nullable="false" />
+    <Property Name="QuantityOnReserve" Type="Int32" />
+    <Property Name="QuantityAvailable" Type="Int32" />
+    <Property Name="MinimumQuantityAvailable" Type="Int32" />
+    <Property Name="WarehouseId" Type="Guid" Nullable="false" />
+    <Property Name="LocationId" Type="Guid" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Location" Relationship="ECommerceAPI.FK_Inventory_Location" FromRole="Inventory" ToRole="Location" />
+    <NavigationProperty Name="Product" Relationship="ECommerceAPI.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
+    <NavigationProperty Name="StatusType" Relationship="ECommerceAPI.FK_Inventory_StatusType" FromRole="Inventory" ToRole="StatusType" />
+    <NavigationProperty Name="Warehouse" Relationship="ECommerceAPI.FK_Inventory_Warehouse" FromRole="Inventory" ToRole="Warehouse" />
+  </EntityType>
+  <Association Name="FK_Inventory_Location">
+    <End Type="ECommerceAPI.Location" Role="Location" Multiplicity="1" />
+    <End Type="ECommerceAPI.Inventory" Role="Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_Product">
+    <End Type="ECommerceAPI.Product" Role="Product" Multiplicity="1" />
+    <End Type="ECommerceAPI.Inventory" Role="Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_StatusType">
+    <End Type="ECommerceAPI.StatusType" Role="StatusType" Multiplicity="1" />
+    <End Type="ECommerceAPI.Inventory" Role="Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="StatusTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_Warehouse">
+    <End Type="ECommerceAPI.Warehouse" Role="Warehouse" Multiplicity="1" />
+    <End Type="ECommerceAPI.Inventory" Role="Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="WarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

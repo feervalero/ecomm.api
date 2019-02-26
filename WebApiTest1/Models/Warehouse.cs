@@ -12,22 +12,21 @@ namespace WebApiTest1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Inventory
+    public partial class Warehouse
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Warehouse()
+        {
+            this.Inventory = new HashSet<Inventory>();
+        }
+    
         public System.Guid Id { get; set; }
-        public System.Guid ProductId { get; set; }
-        public System.Guid StatusTypeId { get; set; }
-        public Nullable<int> QuantityOnReserve { get; set; }
-        public Nullable<int> QuantityAvailable { get; set; }
-        public Nullable<int> MinimumQuantityAvailable { get; set; }
-        public System.Guid WarehouseId { get; set; }
-        public System.Guid LocationId { get; set; }
+        public string Description { get; set; }
+        public string Value { get; set; }
         public bool Active { get; set; }
         public byte[] RowVersion { get; set; }
     
-        public virtual Location Location { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual StatusType StatusType { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inventory> Inventory { get; set; }
     }
 }

@@ -38,6 +38,18 @@
           <Property Name="QuantityOnReserve" Type="int" />
           <Property Name="QuantityAvailable" Type="int" />
           <Property Name="MinimumQuantityAvailable" Type="int" />
+          <Property Name="WarehouseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LocationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
@@ -274,6 +286,16 @@
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vwInventoryBySku">
@@ -299,6 +321,18 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
           <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="StatusTypeActive" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Inventory_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inventory_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
@@ -320,6 +354,18 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
             </Principal>
             <Dependent Role="Inventory">
               <PropertyRef Name="StatusTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Warehouse">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="WarehouseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -593,6 +639,8 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
           <Parameter Name="QuantityOnReserve" Type="int" Mode="In" />
           <Parameter Name="QuantityAvailable" Type="int" Mode="In" />
           <Parameter Name="MinimumQuantityAvailable" Type="int" Mode="In" />
+          <Parameter Name="WarehouseId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="LocationId" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="Active" Type="bit" Mode="In" />
         </Function>
         <Function Name="Inventory_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -605,12 +653,15 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
           <Parameter Name="QuantityOnReserve" Type="int" Mode="In" />
           <Parameter Name="QuantityAvailable" Type="int" Mode="In" />
           <Parameter Name="MinimumQuantityAvailable" Type="int" Mode="In" />
+          <Parameter Name="WarehouseId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="LocationId" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="Active" Type="bit" Mode="In" />
         </Function>
         <EntityContainer Name="ECommerceModelStoreContainer">
           <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeatureType" EntityType="Self.FeatureType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
@@ -632,6 +683,7 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
           <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vwInventoryBySku" EntityType="Self.vwInventoryBySku" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vwInventoryBySku].[Id] AS [Id], 
@@ -647,12 +699,20 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
     [vwInventoryBySku].[StatusTypeActive] AS [StatusTypeActive]
     FROM [dbo].[vwInventoryBySku] AS [vwInventoryBySku]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Inventory_Location" Association="Self.FK_Inventory_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inventory_Product" Association="Self.FK_Inventory_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_Inventory_StatusType" Association="Self.FK_Inventory_StatusType">
             <End Role="StatusType" EntitySet="StatusType" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Warehouse" Association="Self.FK_Inventory_Warehouse">
+            <End Role="Warehouse" EntitySet="Warehouse" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
@@ -773,21 +833,6 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="ProductFeature" Relationship="Self.FK_ProductFeature_FeatureType" FromRole="FeatureType" ToRole="ProductFeature" />
         </EntityType>
-        <EntityType Name="Inventory">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="ProductId" Type="Guid" Nullable="false" />
-          <Property Name="StatusTypeId" Type="Guid" Nullable="false" />
-          <Property Name="QuantityOnReserve" Type="Int32" />
-          <Property Name="QuantityAvailable" Type="Int32" />
-          <Property Name="MinimumQuantityAvailable" Type="Int32" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
-          <NavigationProperty Name="StatusType" Relationship="Self.FK_Inventory_StatusType" FromRole="Inventory" ToRole="StatusType" />
-        </EntityType>
         <EntityType Name="Module">
           <Key>
             <PropertyRef Name="Id" />
@@ -893,11 +938,11 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
           <NavigationProperty Name="Module" Relationship="Self.FK_Product_Module" FromRole="Product" ToRole="Module" />
           <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
           <NavigationProperty Name="Price" Relationship="Self.FK_Product_Price" FromRole="Product" ToRole="Price" />
           <NavigationProperty Name="ProductFeature" Relationship="Self.FK_Product_ProductFeature" FromRole="Product" ToRole="ProductFeature" />
+          <NavigationProperty Name="Inventory" Relationship="ECommerceAPI.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="ProductFeature">
           <Key>
@@ -1014,7 +1059,7 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
           <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_StatusType" FromRole="StatusType" ToRole="Inventory" />
+          <NavigationProperty Name="Inventory" Relationship="ECommerceAPI.FK_Inventory_StatusType" FromRole="StatusType" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -1086,30 +1131,6 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
             </Principal>
             <Dependent Role="ProductFeature">
               <PropertyRef Name="FeatureTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inventory_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Inventory">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inventory_StatusType">
-          <End Role="StatusType" Type="Self.StatusType" Multiplicity="1" />
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StatusType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Inventory">
-              <PropertyRef Name="StatusTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1356,7 +1377,6 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
         <EntityContainer Name="ECommerceEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Audience" EntityType="Self.Audience" />
           <EntitySet Name="FeatureType" EntityType="Self.FeatureType" />
-          <EntitySet Name="Inventory" EntityType="Self.Inventory" />
           <EntitySet Name="Module" EntityType="Self.Module" />
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" />
@@ -1385,14 +1405,6 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
           <AssociationSet Name="FK_ProductFeature_FeatureType" Association="Self.FK_ProductFeature_FeatureType">
             <End Role="FeatureType" EntitySet="FeatureType" />
             <End Role="ProductFeature" EntitySet="ProductFeature" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inventory_Product" Association="Self.FK_Inventory_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Inventory" EntitySet="Inventory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inventory_StatusType" Association="Self.FK_Inventory_StatusType">
-            <End Role="StatusType" EntitySet="StatusType" />
-            <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Module" Association="Self.FK_Product_Module">
             <End Role="Module" EntitySet="Module" />
@@ -1474,28 +1486,27 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
             <End Role="User" EntitySet="User" />
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
-          <FunctionImport Name="Inventory_Add" ReturnType="Collection(Guid)">
-            <Parameter Name="ProductId" Mode="In" Type="Guid" />
-            <Parameter Name="StatusTypeId" Mode="In" Type="Guid" />
-            <Parameter Name="QuantityOnReserve" Mode="In" Type="Int32" />
-            <Parameter Name="QuantityAvailable" Mode="In" Type="Int32" />
-            <Parameter Name="MinimumQuantityAvailable" Mode="In" Type="Int32" />
-            <Parameter Name="Active" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="Inventory_Del">
-          <Parameter Name="Id" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="Inventory_Upd">
-            <Parameter Name="Id" Mode="In" Type="Guid" />
-            <Parameter Name="ProductId" Mode="In" Type="Guid" />
-            <Parameter Name="StatusTypeId" Mode="In" Type="Guid" />
-            <Parameter Name="QuantityOnReserve" Mode="In" Type="Int32" />
-            <Parameter Name="QuantityAvailable" Mode="In" Type="Int32" />
-            <Parameter Name="MinimumQuantityAvailable" Mode="In" Type="Int32" />
-            <Parameter Name="Active" Mode="In" Type="Boolean" />
-          </FunctionImport>
           <EntitySet Name="vwInventoryBySku" EntityType="ECommerceAPI.vwInventoryBySku" />
-        </EntityContainer>
+          <EntitySet Name="Location" EntityType="ECommerceAPI.Location" />
+          <EntitySet Name="Warehouse" EntityType="ECommerceAPI.Warehouse" />
+          <EntitySet Name="Inventory" EntityType="ECommerceAPI.Inventory" />
+          <AssociationSet Name="FK_Inventory_Location" Association="ECommerceAPI.FK_Inventory_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Product" Association="ECommerceAPI.FK_Inventory_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_StatusType" Association="ECommerceAPI.FK_Inventory_StatusType">
+            <End Role="StatusType" EntitySet="StatusType" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Warehouse" Association="ECommerceAPI.FK_Inventory_Warehouse">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="vwInventoryBySku">
           <Key>
             <PropertyRef Name="Id" />
@@ -1519,7 +1530,96 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
           <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="StatusTypeActive" Type="Boolean" Nullable="false" />
         </EntityType>
-      </Schema>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Inventory" Relationship="ECommerceAPI.FK_Inventory_Location" FromRole="Location" ToRole="Inventory" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Inventory" Relationship="ECommerceAPI.FK_Inventory_Warehouse" FromRole="Warehouse" ToRole="Inventory" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ProductId" Type="Guid" Nullable="false" />
+          <Property Name="StatusTypeId" Type="Guid" Nullable="false" />
+          <Property Name="QuantityOnReserve" Type="Int32" />
+          <Property Name="QuantityAvailable" Type="Int32" />
+          <Property Name="MinimumQuantityAvailable" Type="Int32" />
+          <Property Name="WarehouseId" Type="Guid" Nullable="false" />
+          <Property Name="LocationId" Type="Guid" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Location" Relationship="ECommerceAPI.FK_Inventory_Location" FromRole="Inventory" ToRole="Location" />
+          <NavigationProperty Name="Product" Relationship="ECommerceAPI.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
+          <NavigationProperty Name="StatusType" Relationship="ECommerceAPI.FK_Inventory_StatusType" FromRole="Inventory" ToRole="StatusType" />
+          <NavigationProperty Name="Warehouse" Relationship="ECommerceAPI.FK_Inventory_Warehouse" FromRole="Inventory" ToRole="Warehouse" />
+        </EntityType>
+        <Association Name="FK_Inventory_Location">
+          <End Type="ECommerceAPI.Location" Role="Location" Multiplicity="1" />
+          <End Type="ECommerceAPI.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Product">
+          <End Type="ECommerceAPI.Product" Role="Product" Multiplicity="1" />
+          <End Type="ECommerceAPI.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_StatusType">
+          <End Type="ECommerceAPI.StatusType" Role="StatusType" Multiplicity="1" />
+          <End Type="ECommerceAPI.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="StatusTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Warehouse">
+          <End Type="ECommerceAPI.Warehouse" Role="Warehouse" Multiplicity="1" />
+          <End Type="ECommerceAPI.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1548,44 +1648,6 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
               </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Inventory">
-            <EntityTypeMapping TypeName="ECommerceAPI.Inventory">
-              <MappingFragment StoreEntitySet="Inventory">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="StatusTypeId" ColumnName="StatusTypeId" />
-                <ScalarProperty Name="QuantityOnReserve" ColumnName="QuantityOnReserve" />
-                <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
-                <ScalarProperty Name="MinimumQuantityAvailable" ColumnName="MinimumQuantityAvailable" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-            <EntityTypeMapping TypeName="ECommerceAPI.Inventory">
-              <ModificationFunctionMapping>
-                <InsertFunction FunctionName="ECommerceModel.Store.Inventory_Add">
-                  <ScalarProperty Name="Active" ParameterName="Active" />
-                  <ScalarProperty Name="MinimumQuantityAvailable" ParameterName="MinimumQuantityAvailable" />
-                  <ScalarProperty Name="QuantityAvailable" ParameterName="QuantityAvailable" />
-                  <ScalarProperty Name="QuantityOnReserve" ParameterName="QuantityOnReserve" />
-                  <ScalarProperty Name="StatusTypeId" ParameterName="StatusTypeId" />
-                  <ScalarProperty Name="ProductId" ParameterName="ProductId" />
-                </InsertFunction>
-                <UpdateFunction FunctionName="ECommerceModel.Store.Inventory_Upd">
-                  <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
-                  <ScalarProperty Name="MinimumQuantityAvailable" ParameterName="MinimumQuantityAvailable" Version="Current" />
-                  <ScalarProperty Name="QuantityAvailable" ParameterName="QuantityAvailable" Version="Current" />
-                  <ScalarProperty Name="QuantityOnReserve" ParameterName="QuantityOnReserve" Version="Current" />
-                  <ScalarProperty Name="StatusTypeId" ParameterName="StatusTypeId" Version="Current" />
-                  <ScalarProperty Name="ProductId" ParameterName="ProductId" Version="Current" />
-                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
-                </UpdateFunction>
-                <DeleteFunction FunctionName="ECommerceModel.Store.Inventory_Del">
-                  <ScalarProperty Name="Id" ParameterName="Id" />
-                </DeleteFunction>
-              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Module">
@@ -1842,9 +1904,6 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Inventory_Add" FunctionName="ECommerceModel.Store.Inventory_Add" />
-          <FunctionImportMapping FunctionImportName="Inventory_Del" FunctionName="ECommerceModel.Store.Inventory_Del" />
-          <FunctionImportMapping FunctionImportName="Inventory_Upd" FunctionName="ECommerceModel.Store.Inventory_Upd" />
           <EntitySetMapping Name="vwInventoryBySku">
             <EntityTypeMapping TypeName="ECommerceAPI.vwInventoryBySku">
               <MappingFragment StoreEntitySet="vwInventoryBySku">
@@ -1860,6 +1919,72 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
                 <ScalarProperty Name="ModelNumber" ColumnName="ModelNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Location">
+            <EntityTypeMapping TypeName="ECommerceAPI.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouse">
+            <EntityTypeMapping TypeName="ECommerceAPI.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventory">
+            <EntityTypeMapping TypeName="ECommerceAPI.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+                <ScalarProperty Name="MinimumQuantityAvailable" ColumnName="MinimumQuantityAvailable" />
+                <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
+                <ScalarProperty Name="QuantityOnReserve" ColumnName="QuantityOnReserve" />
+                <ScalarProperty Name="StatusTypeId" ColumnName="StatusTypeId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="ECommerceAPI.Inventory">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="ECommerceModel.Store.Inventory_Add">
+                  <ScalarProperty Name="Active" ParameterName="Active" />
+                  <ScalarProperty Name="LocationId" ParameterName="LocationId" />
+                  <ScalarProperty Name="WarehouseId" ParameterName="WarehouseId" />
+                  <ScalarProperty Name="MinimumQuantityAvailable" ParameterName="MinimumQuantityAvailable" />
+                  <ScalarProperty Name="QuantityAvailable" ParameterName="QuantityAvailable" />
+                  <ScalarProperty Name="QuantityOnReserve" ParameterName="QuantityOnReserve" />
+                  <ScalarProperty Name="StatusTypeId" ParameterName="StatusTypeId" />
+                  <ScalarProperty Name="ProductId" ParameterName="ProductId" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="ECommerceModel.Store.Inventory_Upd">
+                  <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+                  <ScalarProperty Name="LocationId" ParameterName="LocationId" Version="Current" />
+                  <ScalarProperty Name="WarehouseId" ParameterName="WarehouseId" Version="Current" />
+                  <ScalarProperty Name="MinimumQuantityAvailable" ParameterName="MinimumQuantityAvailable" Version="Current" />
+                  <ScalarProperty Name="QuantityAvailable" ParameterName="QuantityAvailable" Version="Current" />
+                  <ScalarProperty Name="QuantityOnReserve" ParameterName="QuantityOnReserve" Version="Current" />
+                  <ScalarProperty Name="StatusTypeId" ParameterName="StatusTypeId" Version="Current" />
+                  <ScalarProperty Name="ProductId" ParameterName="ProductId" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="ECommerceModel.Store.Inventory_Del">
+                  <ScalarProperty Name="Id" ParameterName="Id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>

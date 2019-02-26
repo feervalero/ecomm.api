@@ -3,6 +3,8 @@
 USE [ECommerce]
 IF EXISTS(select * from sys.views where name = 'vwInventoryBySku') DROP VIEW [vwInventoryBySku];
 IF EXISTS(select * from sys.tables where name = 'Inventory') DROP TABLE [Inventory];
+IF EXISTS (SELECT * FROM sys.tables WHERE name = 'Location') DROP TABLE [Location];
+IF EXISTS (SELECT * FROM sys.tables WHERE name = 'Warehouse') DROP TABLE [Warehouse];
 IF EXISTS (SELECT * FROM sys.tables WHERE name = 'StatusType') DROP TABLE [StatusType];
 IF EXISTS (SELECT * FROM sys.tables WHERE name = 'Payment') DROP TABLE [Payment];
 IF EXISTS (SELECT * FROM sys.tables WHERE name = 'PaymentMethod') DROP TABLE [PaymentMethod];
@@ -302,7 +304,7 @@ CREATE TABLE [dbo].[Product](
 	[ModuleId] [UNIQUEIDENTIFIER] NOT NULL,
 	[ModelNumber] [VARCHAR](20) NOT NULL,
  	[Variant] [VARCHAR](100) NOT NULL,
- 	[Description] [varchar](255) NOT NULL,
+ 	[Description] [VARCHAR](255) NOT NULL,
  	[Active] [BIT] CONSTRAINT [DF_Product_Active] DEFAULT ((1)) NOT NULL,
  	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED 
@@ -385,6 +387,38 @@ CREATE TABLE [dbo].[StatusType](
 GO
 
 
+
+
+CREATE TABLE [dbo].[Warehouse](
+	[Id] [UNIQUEIDENTIFIER] NOT NULL ROWGUIDCOL CONSTRAINT [DF_Warehouse]  DEFAULT (newsequentialid()),
+	[Description] [VARCHAR](255) NOT NULL,
+	[Value] [VARCHAR](255) NOT NULL,
+	[Active] [BIT] CONSTRAINT [DF_Warehouse_Active] DEFAULT ((1)) NOT NULL,
+	[RowVersion] [ROWVERSION] NOT NULL,
+	CONSTRAINT [PK_Warehouse] PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	)
+)
+GO
+
+
+
+CREATE TABLE [dbo].[Location](
+	[Id] [UNIQUEIDENTIFIER] NOT NULL ROWGUIDCOL CONSTRAINT [DF_Location]  DEFAULT (newsequentialid()),
+	[Description] [VARCHAR](255) NOT NULL,
+	[Value] [VARCHAR](255) NOT NULL,
+	[Active] [BIT] CONSTRAINT [DF_Location_Active] DEFAULT ((1)) NOT NULL,
+	[RowVersion] [ROWVERSION] NOT NULL,
+	CONSTRAINT [PK_Location] PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	)
+)
+GO
+
+
+
 CREATE TABLE [dbo].[Inventory](
 	[Id] [UNIQUEIDENTIFIER] NOT NULL ROWGUIDCOL CONSTRAINT [DF_Inventory]  DEFAULT (newsequentialid()),
 	[ProductId] [UNIQUEIDENTIFIER] NOT NULL,
@@ -392,6 +426,8 @@ CREATE TABLE [dbo].[Inventory](
 	[QuantityOnReserve] [INT] NULL,
 	[QuantityAvailable] [INT] NULL,
 	[MinimumQuantityAvailable] [INT] NULL,
+	[WarehouseId] [UNIQUEIDENTIFIER] NOT NULL,
+	[LocationId][UNIQUEIDENTIFIER] NOT NULL,
 	[Active] [BIT] CONSTRAINT [DF_Inventory_Active] DEFAULT ((1)) NOT NULL,
 	[RowVersion] [ROWVERSION] NOT NULL,
 	CONSTRAINT [PK_Inventory] PRIMARY KEY CLUSTERED 
@@ -399,6 +435,8 @@ CREATE TABLE [dbo].[Inventory](
 		[Id] ASC
 	),CONSTRAINT [FK_Inventory_Product] FOREIGN KEY ([ProductId]) REFERENCES [dbo].[Product] ([Id])
 	,CONSTRAINT [FK_Inventory_StatusType] FOREIGN KEY ([StatusTypeId]) REFERENCES [dbo].[StatusType] ([Id])
+	,CONSTRAINT [FK_Inventory_Location] FOREIGN KEY ([LocationId]) REFERENCES [dbo].[Location] ([Id])
+	,CONSTRAINT [FK_Inventory_Warehouse] FOREIGN KEY ([WarehouseId]) REFERENCES [dbo].[Warehouse] ([Id])
 )
 GO
 

@@ -17,8 +17,8 @@ namespace WebApiTest1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Inventory = new HashSet<Inventory>();
             this.OrderDetail = new HashSet<OrderDetail>();
+            this.Inventory = new HashSet<Inventory>();
         }
     
         public System.Guid Id { get; set; }
@@ -31,12 +31,12 @@ namespace WebApiTest1.Models
         public bool Active { get; set; }
         public byte[] RowVersion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventory> Inventory { get; set; }
         public virtual Module Module { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         public virtual Price Price { get; set; }
         public virtual ProductFeature ProductFeature { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inventory> Inventory { get; set; }
     }
 }

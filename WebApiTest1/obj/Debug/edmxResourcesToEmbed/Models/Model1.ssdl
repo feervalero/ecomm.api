@@ -33,6 +33,18 @@
     <Property Name="QuantityOnReserve" Type="int" />
     <Property Name="QuantityAvailable" Type="int" />
     <Property Name="MinimumQuantityAvailable" Type="int" />
+    <Property Name="WarehouseId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LocationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
   </EntityType>
@@ -269,6 +281,16 @@
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
   </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="vwInventoryBySku">
@@ -294,6 +316,18 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
     <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="StatusTypeActive" Type="bit" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Inventory_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inventory_Product">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
@@ -315,6 +349,18 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
       </Principal>
       <Dependent Role="Inventory">
         <PropertyRef Name="StatusTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_Warehouse">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="WarehouseId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -588,6 +634,8 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
     <Parameter Name="QuantityOnReserve" Type="int" Mode="In" />
     <Parameter Name="QuantityAvailable" Type="int" Mode="In" />
     <Parameter Name="MinimumQuantityAvailable" Type="int" Mode="In" />
+    <Parameter Name="WarehouseId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="LocationId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="Active" Type="bit" Mode="In" />
   </Function>
   <Function Name="Inventory_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -600,12 +648,15 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
     <Parameter Name="QuantityOnReserve" Type="int" Mode="In" />
     <Parameter Name="QuantityAvailable" Type="int" Mode="In" />
     <Parameter Name="MinimumQuantityAvailable" Type="int" Mode="In" />
+    <Parameter Name="WarehouseId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="LocationId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="Active" Type="bit" Mode="In" />
   </Function>
   <EntityContainer Name="ECommerceModelStoreContainer">
     <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FeatureType" EntityType="Self.FeatureType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
@@ -627,6 +678,7 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
     <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vwInventoryBySku" EntityType="Self.vwInventoryBySku" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [vwInventoryBySku].[Id] AS [Id], 
@@ -642,12 +694,20 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
     [vwInventoryBySku].[StatusTypeActive] AS [StatusTypeActive]
     FROM [dbo].[vwInventoryBySku] AS [vwInventoryBySku]</DefiningQuery>
     </EntitySet>
+    <AssociationSet Name="FK_Inventory_Location" Association="Self.FK_Inventory_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inventory_Product" Association="Self.FK_Inventory_Product">
       <End Role="Product" EntitySet="Product" />
       <End Role="Inventory" EntitySet="Inventory" />
     </AssociationSet>
     <AssociationSet Name="FK_Inventory_StatusType" Association="Self.FK_Inventory_StatusType">
       <End Role="StatusType" EntitySet="StatusType" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_Warehouse" Association="Self.FK_Inventory_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouse" />
       <End Role="Inventory" EntitySet="Inventory" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
