@@ -237,7 +237,7 @@ if ($hay_linea_domicilio) {
 
 	include($url_tw."/datos_pedido_header_v2.php");
 
-	$contenido = $IL.'ZWID'.$CR;   // es ZWID para resurtible y ZWIO para no resurtible, pero puede haber de ambos en el pedido
+	$contenido = $IL.'ZWIO'.$CR;   // es ZWIO para resurtible y ZWIO para no resurtible, pero puede haber de ambos en el pedido
 	$contenido .= $ren;
 	$contenido .= $IL.$CR;		// REQUEST DELIVERY DATE INITIAL   	--> modelo
 	$contenido .= $IL.$CR;		// REQUEST DELIVERY DATE FINAL   	--> modelo
@@ -275,7 +275,7 @@ if ($hay_descontinuados_domicilio) {
 
 	include($url_tw."/datos_pedido_header_v2.php");
 
-	$contenido = $IL.'ZWID'.$CR;   // es ZWID para resurtible y ZWIO para no resurtible, pero puede haber de ambos en el pedido
+	$contenido = $IL.'ZWIO'.$CR;   // es ZWIO para resurtible y ZWIO para no resurtible, pero puede haber de ambos en el pedido
 	$contenido .= $ren;
 	$contenido .= $IL.$CR;		// REQUEST DELIVERY DATE INITIAL   	--> modelo
 	$contenido .= $IL.$CR;		// REQUEST DELIVERY DATE FINAL   	--> modelo
@@ -313,7 +313,7 @@ if ($hay_linea_recoge) {
 
 	include($url_tw."/datos_pedido_header_v2.php");
 
-	$contenido = $IL.'ZWID'.$CR;   // es ZWID para resurtible y ZWIO para no resurtible, pero puede haber de ambos en el pedido
+	$contenido = $IL.'ZWIO'.$CR;   // es ZWIO para resurtible y ZWIO para no resurtible, pero puede haber de ambos en el pedido
 	$contenido .= $ren;
 	$contenido .= $IL.$CR;		// REQUEST DELIVERY DATE INITIAL   	--> modelo
 	$contenido .= $IL.$CR;		// REQUEST DELIVERY DATE FINAL   	--> modelo
@@ -350,7 +350,7 @@ if ($hay_descontinuados_recoge) {
 
 	include($url_tw."/datos_pedido_header_v2.php");
 
-	$contenido = $IL.'ZWID'.$CR;   // es ZWID para resurtible y ZWIO para no resurtible, pero puede haber de ambos en el pedido
+	$contenido = $IL.'ZWIO'.$CR;   // es ZWIO para resurtible y ZWIO para no resurtible, pero puede haber de ambos en el pedido
 	$contenido .= $ren;
 	$contenido .= $IL.$CR;		// REQUEST DELIVERY DATE INITIAL   	--> modelo
 	$contenido .= $IL.$CR;		// REQUEST DELIVERY DATE FINAL   	--> modelo
@@ -388,7 +388,7 @@ if ($hay_garantias || $hay_fletes) {
 
 	include($url_tw."/datos_pedido_header_v2.php");
 
-	$contenido = $IL.'ZWID'.$CR;   // es ZWID para resurtible y ZWIO para no resurtible, pero puede haber de ambos en el pedido
+	$contenido = $IL.'ZWIO'.$CR;   // es ZWIO para resurtible y ZWIO para no resurtible, pero puede haber de ambos en el pedido
 	$contenido .= $ren;
 	$contenido .= $IL.$CR;		// REQUEST DELIVERY DATE INITIAL   	--> modelo
 	$contenido .= $IL.$CR;		// REQUEST DELIVERY DATE FINAL   	--> modelo
