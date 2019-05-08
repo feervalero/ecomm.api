@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.OData.Builder;
 using System.Web.Http.OData.Extensions;
 using Newtonsoft.Json.Serialization;
@@ -36,6 +37,7 @@ namespace WebApiTest1
             builder.EntitySet<StatusType>("StatusTypes");
             builder.EntitySet<User>("Users");
             builder.EntitySet<UserType>("UserTypes");
+            builder.EntitySet<Category>("Categories");
 
 
             builder.EntitySet<vwInventoryBySku>("GetInventoryBySku");
@@ -45,6 +47,8 @@ namespace WebApiTest1
             config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
             // Web API routes
             config.MapHttpAttributeRoutes();
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

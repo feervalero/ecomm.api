@@ -698,6 +698,89 @@
       <End Role="Warehouse" EntitySet="Warehouse" />
       <End Role="Inventory" EntitySet="Inventory" />
     </AssociationSet>
+    <FunctionImport Name="Price_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="MSRP" Mode="In" Type="String" />
+      <Parameter Name="Discount" Mode="In" Type="String" />
+      <Parameter Name="Taxes" Mode="In" Type="String" />
+      <Parameter Name="PriceTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Price_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Price_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="MSRP" Mode="In" Type="String" />
+      <Parameter Name="Discount" Mode="In" Type="String" />
+      <Parameter Name="Taxes" Mode="In" Type="String" />
+      <Parameter Name="PriceTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PriceType_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PriceType_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="PriceType_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Product_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="PriceId" Mode="In" Type="Guid" />
+      <Parameter Name="ProductFeatureId" Mode="In" Type="Guid" />
+      <Parameter Name="ModuleId" Mode="In" Type="Guid" />
+      <Parameter Name="ModelNumber" Mode="In" Type="String" />
+      <Parameter Name="Variant" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Product_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Product_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="PriceId" Mode="In" Type="Guid" />
+      <Parameter Name="ProductFeatureId" Mode="In" Type="Guid" />
+      <Parameter Name="ModuleId" Mode="In" Type="Guid" />
+      <Parameter Name="ModelNumber" Mode="In" Type="String" />
+      <Parameter Name="Variant" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ProductFeature_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="FeatureTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="Reference" Mode="In" Type="String" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ProductFeature_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="ProductFeature_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="FeatureTypeId" Mode="In" Type="Guid" />
+      <Parameter Name="Reference" Mode="In" Type="String" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <EntitySet Name="Category" EntityType="ECommerceAPI.Category" />
+    <FunctionImport Name="Category_Add" ReturnType="Collection(Guid)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ParentCategoryId" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Category_Del">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Category_Upd">
+      <Parameter Name="Id" Mode="In" Type="Guid" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ParentCategoryId" Mode="In" Type="Guid" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="vwInventoryBySku">
     <Key>
@@ -811,4 +894,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ParentCategoryId" Type="Guid" />
+  </EntityType>
 </Schema>

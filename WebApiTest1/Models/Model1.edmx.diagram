@@ -58,6 +58,7 @@
         <AssociationConnector Association="ECommerceAPI.FK_Inventory_Product" />
         <AssociationConnector Association="ECommerceAPI.FK_Inventory_StatusType" />
         <AssociationConnector Association="ECommerceAPI.FK_Inventory_Warehouse" />
+        <EntityTypeShape EntityType="ECommerceAPI.Category" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -128,4 +128,6 @@ C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\zh-Hant\System.Spatia
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\obj\Debug\ECommerceAPI.csproj.CopyComplete
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\obj\Debug\WebApiTest1.dll
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\obj\Debug\WebApiTest1.pdb
+C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\System.Web.Http.Cors.dll
+C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\bin\System.Web.Http.Cors.xml
 C:\Users\valerf2\source\repos\ECommerceApi\WebApiTest1\obj\Debug\ECommerceAPI.csprojAssemblyReference.cache

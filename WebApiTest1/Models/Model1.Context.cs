@@ -12,6 +12,8 @@ namespace WebApiTest1.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ECommerceEntities : DbContext
     {
@@ -52,5 +54,289 @@ namespace WebApiTest1.Models
         public virtual DbSet<Location> Location { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<Inventory> Inventory { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> Price_Add(string mSRP, string discount, string taxes, Nullable<System.Guid> priceTypeId, Nullable<bool> active)
+        {
+            var mSRPParameter = mSRP != null ?
+                new ObjectParameter("MSRP", mSRP) :
+                new ObjectParameter("MSRP", typeof(string));
+    
+            var discountParameter = discount != null ?
+                new ObjectParameter("Discount", discount) :
+                new ObjectParameter("Discount", typeof(string));
+    
+            var taxesParameter = taxes != null ?
+                new ObjectParameter("Taxes", taxes) :
+                new ObjectParameter("Taxes", typeof(string));
+    
+            var priceTypeIdParameter = priceTypeId.HasValue ?
+                new ObjectParameter("PriceTypeId", priceTypeId) :
+                new ObjectParameter("PriceTypeId", typeof(System.Guid));
+    
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("Active", active) :
+                new ObjectParameter("Active", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("Price_Add", mSRPParameter, discountParameter, taxesParameter, priceTypeIdParameter, activeParameter);
+        }
+    
+        public virtual int Price_Del(Nullable<System.Guid> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Price_Del", idParameter);
+        }
+    
+        public virtual int Price_Upd(Nullable<System.Guid> id, string mSRP, string discount, string taxes, Nullable<System.Guid> priceTypeId, Nullable<bool> active)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            var mSRPParameter = mSRP != null ?
+                new ObjectParameter("MSRP", mSRP) :
+                new ObjectParameter("MSRP", typeof(string));
+    
+            var discountParameter = discount != null ?
+                new ObjectParameter("Discount", discount) :
+                new ObjectParameter("Discount", typeof(string));
+    
+            var taxesParameter = taxes != null ?
+                new ObjectParameter("Taxes", taxes) :
+                new ObjectParameter("Taxes", typeof(string));
+    
+            var priceTypeIdParameter = priceTypeId.HasValue ?
+                new ObjectParameter("PriceTypeId", priceTypeId) :
+                new ObjectParameter("PriceTypeId", typeof(System.Guid));
+    
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("Active", active) :
+                new ObjectParameter("Active", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Price_Upd", idParameter, mSRPParameter, discountParameter, taxesParameter, priceTypeIdParameter, activeParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> PriceType_Add(string value, Nullable<bool> active)
+        {
+            var valueParameter = value != null ?
+                new ObjectParameter("Value", value) :
+                new ObjectParameter("Value", typeof(string));
+    
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("Active", active) :
+                new ObjectParameter("Active", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("PriceType_Add", valueParameter, activeParameter);
+        }
+    
+        public virtual int PriceType_Del(Nullable<System.Guid> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PriceType_Del", idParameter);
+        }
+    
+        public virtual int PriceType_Upd(Nullable<System.Guid> id, string value, Nullable<bool> active)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            var valueParameter = value != null ?
+                new ObjectParameter("Value", value) :
+                new ObjectParameter("Value", typeof(string));
+    
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("Active", active) :
+                new ObjectParameter("Active", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PriceType_Upd", idParameter, valueParameter, activeParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> Product_Add(Nullable<System.Guid> priceId, Nullable<System.Guid> productFeatureId, Nullable<System.Guid> moduleId, string modelNumber, string variant, string description, Nullable<bool> active)
+        {
+            var priceIdParameter = priceId.HasValue ?
+                new ObjectParameter("PriceId", priceId) :
+                new ObjectParameter("PriceId", typeof(System.Guid));
+    
+            var productFeatureIdParameter = productFeatureId.HasValue ?
+                new ObjectParameter("ProductFeatureId", productFeatureId) :
+                new ObjectParameter("ProductFeatureId", typeof(System.Guid));
+    
+            var moduleIdParameter = moduleId.HasValue ?
+                new ObjectParameter("ModuleId", moduleId) :
+                new ObjectParameter("ModuleId", typeof(System.Guid));
+    
+            var modelNumberParameter = modelNumber != null ?
+                new ObjectParameter("ModelNumber", modelNumber) :
+                new ObjectParameter("ModelNumber", typeof(string));
+    
+            var variantParameter = variant != null ?
+                new ObjectParameter("Variant", variant) :
+                new ObjectParameter("Variant", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("Active", active) :
+                new ObjectParameter("Active", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("Product_Add", priceIdParameter, productFeatureIdParameter, moduleIdParameter, modelNumberParameter, variantParameter, descriptionParameter, activeParameter);
+        }
+    
+        public virtual int Product_Del(Nullable<System.Guid> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Product_Del", idParameter);
+        }
+    
+        public virtual int Product_Upd(Nullable<System.Guid> id, Nullable<System.Guid> priceId, Nullable<System.Guid> productFeatureId, Nullable<System.Guid> moduleId, string modelNumber, string variant, string description, Nullable<bool> active)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            var priceIdParameter = priceId.HasValue ?
+                new ObjectParameter("PriceId", priceId) :
+                new ObjectParameter("PriceId", typeof(System.Guid));
+    
+            var productFeatureIdParameter = productFeatureId.HasValue ?
+                new ObjectParameter("ProductFeatureId", productFeatureId) :
+                new ObjectParameter("ProductFeatureId", typeof(System.Guid));
+    
+            var moduleIdParameter = moduleId.HasValue ?
+                new ObjectParameter("ModuleId", moduleId) :
+                new ObjectParameter("ModuleId", typeof(System.Guid));
+    
+            var modelNumberParameter = modelNumber != null ?
+                new ObjectParameter("ModelNumber", modelNumber) :
+                new ObjectParameter("ModelNumber", typeof(string));
+    
+            var variantParameter = variant != null ?
+                new ObjectParameter("Variant", variant) :
+                new ObjectParameter("Variant", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("Active", active) :
+                new ObjectParameter("Active", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Product_Upd", idParameter, priceIdParameter, productFeatureIdParameter, moduleIdParameter, modelNumberParameter, variantParameter, descriptionParameter, activeParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> ProductFeature_Add(Nullable<System.Guid> featureTypeId, string reference, string title, string description, Nullable<bool> active)
+        {
+            var featureTypeIdParameter = featureTypeId.HasValue ?
+                new ObjectParameter("FeatureTypeId", featureTypeId) :
+                new ObjectParameter("FeatureTypeId", typeof(System.Guid));
+    
+            var referenceParameter = reference != null ?
+                new ObjectParameter("Reference", reference) :
+                new ObjectParameter("Reference", typeof(string));
+    
+            var titleParameter = title != null ?
+                new ObjectParameter("Title", title) :
+                new ObjectParameter("Title", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("Active", active) :
+                new ObjectParameter("Active", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("ProductFeature_Add", featureTypeIdParameter, referenceParameter, titleParameter, descriptionParameter, activeParameter);
+        }
+    
+        public virtual int ProductFeature_Del(Nullable<System.Guid> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProductFeature_Del", idParameter);
+        }
+    
+        public virtual int ProductFeature_Upd(Nullable<System.Guid> id, Nullable<System.Guid> featureTypeId, string reference, string title, string description, Nullable<bool> active)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            var featureTypeIdParameter = featureTypeId.HasValue ?
+                new ObjectParameter("FeatureTypeId", featureTypeId) :
+                new ObjectParameter("FeatureTypeId", typeof(System.Guid));
+    
+            var referenceParameter = reference != null ?
+                new ObjectParameter("Reference", reference) :
+                new ObjectParameter("Reference", typeof(string));
+    
+            var titleParameter = title != null ?
+                new ObjectParameter("Title", title) :
+                new ObjectParameter("Title", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("Active", active) :
+                new ObjectParameter("Active", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProductFeature_Upd", idParameter, featureTypeIdParameter, referenceParameter, titleParameter, descriptionParameter, activeParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> Category_Add(string name, Nullable<System.Guid> parentCategoryId)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var parentCategoryIdParameter = parentCategoryId.HasValue ?
+                new ObjectParameter("ParentCategoryId", parentCategoryId) :
+                new ObjectParameter("ParentCategoryId", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("Category_Add", nameParameter, parentCategoryIdParameter);
+        }
+    
+        public virtual int Category_Del(Nullable<System.Guid> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Category_Del", idParameter);
+        }
+    
+        public virtual int Category_Upd(Nullable<System.Guid> id, string name, Nullable<System.Guid> parentCategoryId)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var parentCategoryIdParameter = parentCategoryId.HasValue ?
+                new ObjectParameter("ParentCategoryId", parentCategoryId) :
+                new ObjectParameter("ParentCategoryId", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Category_Upd", idParameter, nameParameter, parentCategoryIdParameter);
+        }
     }
 }

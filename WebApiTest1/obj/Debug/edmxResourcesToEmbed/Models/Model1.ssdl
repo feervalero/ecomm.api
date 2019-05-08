@@ -13,6 +13,15 @@
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
   </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="ParentCategoryId" Type="uniqueidentifier" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
   <EntityType Name="FeatureType">
     <Key>
       <PropertyRef Name="Id" />
@@ -628,6 +637,18 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="Category_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="ParentCategoryId" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="Category_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="Category_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="ParentCategoryId" Type="uniqueidentifier" Mode="In" />
+  </Function>
   <Function Name="Inventory_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ProductId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="StatusTypeId" Type="uniqueidentifier" Mode="In" />
@@ -652,8 +673,79 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
     <Parameter Name="LocationId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="Active" Type="bit" Mode="In" />
   </Function>
+  <Function Name="Price_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MSRP" Type="varchar" Mode="In" />
+    <Parameter Name="Discount" Type="varchar" Mode="In" />
+    <Parameter Name="Taxes" Type="varchar" Mode="In" />
+    <Parameter Name="PriceTypeId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="Price_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="Price_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="MSRP" Type="varchar" Mode="In" />
+    <Parameter Name="Discount" Type="varchar" Mode="In" />
+    <Parameter Name="Taxes" Type="varchar" Mode="In" />
+    <Parameter Name="PriceTypeId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="PriceType_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Value" Type="varchar" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="PriceType_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="PriceType_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="Value" Type="varchar" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="Product_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PriceId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="ProductFeatureId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="ModuleId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="ModelNumber" Type="varchar" Mode="In" />
+    <Parameter Name="Variant" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="Product_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="Product_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="PriceId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="ProductFeatureId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="ModuleId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="ModelNumber" Type="varchar" Mode="In" />
+    <Parameter Name="Variant" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="ProductFeature_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FeatureTypeId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="Reference" Type="varchar" Mode="In" />
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="ProductFeature_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="ProductFeature_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="FeatureTypeId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="Reference" Type="varchar" Mode="In" />
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+  </Function>
   <EntityContainer Name="ECommerceModelStoreContainer">
     <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FeatureType" EntityType="Self.FeatureType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />

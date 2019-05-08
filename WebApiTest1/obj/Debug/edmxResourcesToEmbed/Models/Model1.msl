@@ -127,6 +127,32 @@
           <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
         </MappingFragment>
       </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceAPI.Product">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Product_Add">
+            <ScalarProperty Name="Active" ParameterName="Active" />
+            <ScalarProperty Name="Description" ParameterName="Description" />
+            <ScalarProperty Name="Variant" ParameterName="Variant" />
+            <ScalarProperty Name="ModelNumber" ParameterName="ModelNumber" />
+            <ScalarProperty Name="ModuleId" ParameterName="ModuleId" />
+            <ScalarProperty Name="ProductFeatureId" ParameterName="ProductFeatureId" />
+            <ScalarProperty Name="PriceId" ParameterName="PriceId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Product_Upd">
+            <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+            <ScalarProperty Name="Description" ParameterName="Description" Version="Current" />
+            <ScalarProperty Name="Variant" ParameterName="Variant" Version="Current" />
+            <ScalarProperty Name="ModelNumber" ParameterName="ModelNumber" Version="Current" />
+            <ScalarProperty Name="ModuleId" ParameterName="ModuleId" Version="Current" />
+            <ScalarProperty Name="ProductFeatureId" ParameterName="ProductFeatureId" Version="Current" />
+            <ScalarProperty Name="PriceId" ParameterName="PriceId" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Product_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProductFeature">
       <EntityTypeMapping TypeName="ECommerceAPI.ProductFeature">
@@ -363,5 +389,45 @@
         </ModificationFunctionMapping>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Price_Add" FunctionName="ECommerceModel.Store.Price_Add" />
+    <FunctionImportMapping FunctionImportName="Price_Del" FunctionName="ECommerceModel.Store.Price_Del" />
+    <FunctionImportMapping FunctionImportName="Price_Upd" FunctionName="ECommerceModel.Store.Price_Upd" />
+    <FunctionImportMapping FunctionImportName="PriceType_Add" FunctionName="ECommerceModel.Store.PriceType_Add" />
+    <FunctionImportMapping FunctionImportName="PriceType_Del" FunctionName="ECommerceModel.Store.PriceType_Del" />
+    <FunctionImportMapping FunctionImportName="PriceType_Upd" FunctionName="ECommerceModel.Store.PriceType_Upd" />
+    <FunctionImportMapping FunctionImportName="Product_Add" FunctionName="ECommerceModel.Store.Product_Add" />
+    <FunctionImportMapping FunctionImportName="Product_Del" FunctionName="ECommerceModel.Store.Product_Del" />
+    <FunctionImportMapping FunctionImportName="Product_Upd" FunctionName="ECommerceModel.Store.Product_Upd" />
+    <FunctionImportMapping FunctionImportName="ProductFeature_Add" FunctionName="ECommerceModel.Store.ProductFeature_Add" />
+    <FunctionImportMapping FunctionImportName="ProductFeature_Del" FunctionName="ECommerceModel.Store.ProductFeature_Del" />
+    <FunctionImportMapping FunctionImportName="ProductFeature_Upd" FunctionName="ECommerceModel.Store.ProductFeature_Upd" />
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="ECommerceAPI.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="ECommerceAPI.Category">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="ECommerceModel.Store.Category_Add">
+            <ScalarProperty Name="ParentCategoryId" ParameterName="ParentCategoryId" />
+            <ScalarProperty Name="Name" ParameterName="Name" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="ECommerceModel.Store.Category_Upd">
+            <ScalarProperty Name="ParentCategoryId" ParameterName="ParentCategoryId" Version="Current" />
+            <ScalarProperty Name="Name" ParameterName="Name" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="ECommerceModel.Store.Category_Del">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Category_Add" FunctionName="ECommerceModel.Store.Category_Add" />
+    <FunctionImportMapping FunctionImportName="Category_Del" FunctionName="ECommerceModel.Store.Category_Del" />
+    <FunctionImportMapping FunctionImportName="Category_Upd" FunctionName="ECommerceModel.Store.Category_Upd" />
   </EntityContainerMapping>
 </Mapping>

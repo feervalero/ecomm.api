@@ -18,6 +18,15 @@
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ParentCategoryId" Type="uniqueidentifier" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="FeatureType">
           <Key>
             <PropertyRef Name="Id" />
@@ -633,6 +642,18 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Category_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="ParentCategoryId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="Category_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="Category_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="ParentCategoryId" Type="uniqueidentifier" Mode="In" />
+        </Function>
         <Function Name="Inventory_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductId" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="StatusTypeId" Type="uniqueidentifier" Mode="In" />
@@ -657,8 +678,79 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
           <Parameter Name="LocationId" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="Active" Type="bit" Mode="In" />
         </Function>
+        <Function Name="Price_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MSRP" Type="varchar" Mode="In" />
+          <Parameter Name="Discount" Type="varchar" Mode="In" />
+          <Parameter Name="Taxes" Type="varchar" Mode="In" />
+          <Parameter Name="PriceTypeId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Active" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Price_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="Price_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="MSRP" Type="varchar" Mode="In" />
+          <Parameter Name="Discount" Type="varchar" Mode="In" />
+          <Parameter Name="Taxes" Type="varchar" Mode="In" />
+          <Parameter Name="PriceTypeId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Active" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="PriceType_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Value" Type="varchar" Mode="In" />
+          <Parameter Name="Active" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="PriceType_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="PriceType_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Value" Type="varchar" Mode="In" />
+          <Parameter Name="Active" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Product_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PriceId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProductFeatureId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ModuleId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ModelNumber" Type="varchar" Mode="In" />
+          <Parameter Name="Variant" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="Active" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Product_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="Product_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PriceId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProductFeatureId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ModuleId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ModelNumber" Type="varchar" Mode="In" />
+          <Parameter Name="Variant" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="Active" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ProductFeature_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FeatureTypeId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Reference" Type="varchar" Mode="In" />
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="Active" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ProductFeature_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="ProductFeature_Upd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FeatureTypeId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Reference" Type="varchar" Mode="In" />
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="Active" Type="bit" Mode="In" />
+        </Function>
         <EntityContainer Name="ECommerceModelStoreContainer">
           <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeatureType" EntityType="Self.FeatureType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
@@ -1506,6 +1598,89 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
             <End Role="Warehouse" EntitySet="Warehouse" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
+          <FunctionImport Name="Price_Add" ReturnType="Collection(Guid)">
+            <Parameter Name="MSRP" Mode="In" Type="String" />
+            <Parameter Name="Discount" Mode="In" Type="String" />
+            <Parameter Name="Taxes" Mode="In" Type="String" />
+            <Parameter Name="PriceTypeId" Mode="In" Type="Guid" />
+            <Parameter Name="Active" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Price_Del">
+          <Parameter Name="Id" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="Price_Upd">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="MSRP" Mode="In" Type="String" />
+            <Parameter Name="Discount" Mode="In" Type="String" />
+            <Parameter Name="Taxes" Mode="In" Type="String" />
+            <Parameter Name="PriceTypeId" Mode="In" Type="Guid" />
+            <Parameter Name="Active" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="PriceType_Add" ReturnType="Collection(Guid)">
+            <Parameter Name="Value" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="PriceType_Del">
+          <Parameter Name="Id" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="PriceType_Upd">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Product_Add" ReturnType="Collection(Guid)">
+            <Parameter Name="PriceId" Mode="In" Type="Guid" />
+            <Parameter Name="ProductFeatureId" Mode="In" Type="Guid" />
+            <Parameter Name="ModuleId" Mode="In" Type="Guid" />
+            <Parameter Name="ModelNumber" Mode="In" Type="String" />
+            <Parameter Name="Variant" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Product_Del">
+          <Parameter Name="Id" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="Product_Upd">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="PriceId" Mode="In" Type="Guid" />
+            <Parameter Name="ProductFeatureId" Mode="In" Type="Guid" />
+            <Parameter Name="ModuleId" Mode="In" Type="Guid" />
+            <Parameter Name="ModelNumber" Mode="In" Type="String" />
+            <Parameter Name="Variant" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ProductFeature_Add" ReturnType="Collection(Guid)">
+            <Parameter Name="FeatureTypeId" Mode="In" Type="Guid" />
+            <Parameter Name="Reference" Mode="In" Type="String" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ProductFeature_Del">
+          <Parameter Name="Id" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="ProductFeature_Upd">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="FeatureTypeId" Mode="In" Type="Guid" />
+            <Parameter Name="Reference" Mode="In" Type="String" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="Category" EntityType="ECommerceAPI.Category" />
+          <FunctionImport Name="Category_Add" ReturnType="Collection(Guid)">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="ParentCategoryId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="Category_Del">
+          <Parameter Name="Id" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="Category_Upd">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="ParentCategoryId" Mode="In" Type="Guid" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="vwInventoryBySku">
           <Key>
@@ -1619,6 +1794,14 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ParentCategoryId" Type="Guid" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1750,6 +1933,32 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="ECommerceAPI.Product">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="ECommerceModel.Store.Product_Add">
+                  <ScalarProperty Name="Active" ParameterName="Active" />
+                  <ScalarProperty Name="Description" ParameterName="Description" />
+                  <ScalarProperty Name="Variant" ParameterName="Variant" />
+                  <ScalarProperty Name="ModelNumber" ParameterName="ModelNumber" />
+                  <ScalarProperty Name="ModuleId" ParameterName="ModuleId" />
+                  <ScalarProperty Name="ProductFeatureId" ParameterName="ProductFeatureId" />
+                  <ScalarProperty Name="PriceId" ParameterName="PriceId" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="ECommerceModel.Store.Product_Upd">
+                  <ScalarProperty Name="Active" ParameterName="Active" Version="Current" />
+                  <ScalarProperty Name="Description" ParameterName="Description" Version="Current" />
+                  <ScalarProperty Name="Variant" ParameterName="Variant" Version="Current" />
+                  <ScalarProperty Name="ModelNumber" ParameterName="ModelNumber" Version="Current" />
+                  <ScalarProperty Name="ModuleId" ParameterName="ModuleId" Version="Current" />
+                  <ScalarProperty Name="ProductFeatureId" ParameterName="ProductFeatureId" Version="Current" />
+                  <ScalarProperty Name="PriceId" ParameterName="PriceId" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="ECommerceModel.Store.Product_Del">
+                  <ScalarProperty Name="Id" ParameterName="Id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductFeature">
@@ -1987,6 +2196,46 @@ warning 6002: The table/view 'ECommerce.dbo.vwInventoryBySku' does not have a pr
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Price_Add" FunctionName="ECommerceModel.Store.Price_Add" />
+          <FunctionImportMapping FunctionImportName="Price_Del" FunctionName="ECommerceModel.Store.Price_Del" />
+          <FunctionImportMapping FunctionImportName="Price_Upd" FunctionName="ECommerceModel.Store.Price_Upd" />
+          <FunctionImportMapping FunctionImportName="PriceType_Add" FunctionName="ECommerceModel.Store.PriceType_Add" />
+          <FunctionImportMapping FunctionImportName="PriceType_Del" FunctionName="ECommerceModel.Store.PriceType_Del" />
+          <FunctionImportMapping FunctionImportName="PriceType_Upd" FunctionName="ECommerceModel.Store.PriceType_Upd" />
+          <FunctionImportMapping FunctionImportName="Product_Add" FunctionName="ECommerceModel.Store.Product_Add" />
+          <FunctionImportMapping FunctionImportName="Product_Del" FunctionName="ECommerceModel.Store.Product_Del" />
+          <FunctionImportMapping FunctionImportName="Product_Upd" FunctionName="ECommerceModel.Store.Product_Upd" />
+          <FunctionImportMapping FunctionImportName="ProductFeature_Add" FunctionName="ECommerceModel.Store.ProductFeature_Add" />
+          <FunctionImportMapping FunctionImportName="ProductFeature_Del" FunctionName="ECommerceModel.Store.ProductFeature_Del" />
+          <FunctionImportMapping FunctionImportName="ProductFeature_Upd" FunctionName="ECommerceModel.Store.ProductFeature_Upd" />
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="ECommerceAPI.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="ECommerceAPI.Category">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="ECommerceModel.Store.Category_Add">
+                  <ScalarProperty Name="ParentCategoryId" ParameterName="ParentCategoryId" />
+                  <ScalarProperty Name="Name" ParameterName="Name" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="ECommerceModel.Store.Category_Upd">
+                  <ScalarProperty Name="ParentCategoryId" ParameterName="ParentCategoryId" Version="Current" />
+                  <ScalarProperty Name="Name" ParameterName="Name" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="ECommerceModel.Store.Category_Del">
+                  <ScalarProperty Name="Id" ParameterName="Id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Category_Add" FunctionName="ECommerceModel.Store.Category_Add" />
+          <FunctionImportMapping FunctionImportName="Category_Del" FunctionName="ECommerceModel.Store.Category_Del" />
+          <FunctionImportMapping FunctionImportName="Category_Upd" FunctionName="ECommerceModel.Store.Category_Upd" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
